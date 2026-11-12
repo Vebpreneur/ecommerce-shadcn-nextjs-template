@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowUpRight, CheckCircle2, Info, Smartphone, CalendarDays, Database } from "lucide-react"
 import type { Provider } from "@/lib/esim"
+import { getVerifiedPlans } from "@/lib/esim-plans"
 
 const DATA_NEEDS = ["Lite surf", "Normal användning", "Mycket surf", "Obegränsat (om tillgängligt)"]
 const DURATION_NEEDS = ["Upp till 7 dagar", "8–15 dagar", "16–30 dagar", "Längre än 30 dagar"]
@@ -12,9 +13,41 @@ const DURATION_NEEDS = ["Upp till 7 dagar", "8–15 dagar", "16–30 dagar", "L�
  * A preference guide, not fabricated package SKUs.
  * Later replace with actual provider-specific verified plans.
  */
-export function EsimPlanFinder({ provider }: { provider: Provider }) {
+export function EsimPlanFinder({ provider, destinationSlug }: { provider: Provider; destinationSlug: string }) {
   const [dataNeed, setDataNeed] = useState("")
   const [duration, setDuration] = useState("")
+  const plans = getVerifiedPlans(provider.slug, destinationSlug)
+  if (plans.length) return (
+    <section className="overflow-hidden rounded-[24px] border border-[#e6e4df] bg-white shadow-sm">
+      <div className="border-b border-[#eceae6] p-6 sm:p-8">
+        <p className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#777]">VERIFIERADE PAKET</p>
+        <h2 className="mt-3 text-2xl font-semibold">Välj eSIM-paket</h2>
+        <p className="mt-2 text-sm leading-7 text-[#777]">Se datapott, giltighetstid och paketvillkor. Kontrollera alltid slutpris och tillgänglighet hos leverantören.</p>
+      </div>
+      <div className="space-y-3 p-5 sm:p-7">{plans.map(plan => (
+        <details key={plan.id} className="group rounded-xl border border-[#e6e4df] bg-[#faf9f6] p-5">
+          <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3">
+            <span><strong className="block text-base">{plan.name}</strong>
+              <span className="mt-1 block text-sm text-[#777]">
+                {"amountGb" in plan.data ? `${plan.data.amountGb} GB` : "Obegränsad data"} · {plan.validityDays} dagar
+              </span></span>
+            <strong className="text-lg">{new Intl.NumberFormat("sv-SE", {style:"currency",currency:plan.currency}).format(plan.price)}</strong>
+          </summary>
+          <div className="mt-5 space-y-2 border-t border-[#e6e4df] pt-4 text-sm leading-7 text-[#6e6e6e]">
+            <p><strong>Täckning:</strong> {plan.coverageCountries.join(", ")}</p>
+            {plan.activationConditions && <p><strong>Aktivering:</strong> {plan.activationConditions}</p>}
+            {plan.speedLimitNotes && <p><strong>Hastighet:</strong> {plan.speedLimitNotes}</p>}
+            {plan.networkNotes && <p><strong>Nätverk:</strong> {plan.networkNotes}</p>}
+            <p className="text-xs">Senast verifierad: {plan.verifiedAt}</p>
+            <a href={plan.purchaseUrl} target="_blank" rel="sponsored noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#171717] px-5 py-3 font-semibold text-white">
+              Se paket hos {provider.name} <ArrowUpRight className="size-4"/>
+            </a>
+          </div>
+        </details>
+      ))}</div>
+    </section>
+  )
   return <section className="overflow-hidden rounded-[24px] border border-[#e6e4df] bg-white shadow-sm">
     <div className="border-b border-[#eceae6] p-6 sm:p-8">
       <div className="flex items-start justify-between gap-5">
