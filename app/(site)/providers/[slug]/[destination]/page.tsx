@@ -54,7 +54,7 @@ export default async function DestinationPage({ params }: Props) {
             <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">{provider.name} / eSIM</p>
             <h1 className="mt-4 text-5xl font-semibold tracking-[-.055em] sm:text-6xl">eSIM för {place.name}</h1>
             <p className="mt-6 max-w-lg text-base leading-8 text-[#6e6e6e]">Utforska din nästa destination och välj vad du behöver. Kontrollera sedan datapaket, giltighetstid och aktuella villkor hos {provider.name}.</p>
-            <div className="mt-9"><EsimPlanFinder provider={provider}/></div>
+            <div className="mt-9"><EsimPlanFinder provider={provider} destinationSlug={place.slug}/></div>
           </div>
         </div>
         <div className="mt-20 grid gap-10 border-t border-[#e5e3dd] pt-14 lg:grid-cols-[.7fr_1.3fr]">
