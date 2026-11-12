@@ -15,6 +15,10 @@ const navigationData: NavigationSection[] = [
     href: "/shop",
   },
   {
+    title: "Leverantörer",
+    href: "/providers",
+  },
+  {
     title: "About",
     href: "/about",
   },
