@@ -3,8 +3,9 @@
 import { useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowDown, ArrowRight, ArrowUpRight, Globe2, Search, ShieldCheck, Smartphone } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Globe2, ShieldCheck, Smartphone } from "lucide-react"
 import { EsimRippleHero } from "@/components/esim/ripple-hero"
+import { LargeHeroSearch, PrintifyPrimaryLink, PrintifySecondaryButton } from "@/components/esim/printify-controls"
 import { StoreCard, DestinationCard } from "@/components/esim/collection"
 import { PROVIDERS, DESTINATIONS } from "@/lib/esim"
 
@@ -26,9 +27,9 @@ export default function EsimHome() {
 
   return (
     <main className="bg-[#f8f7f4]">
-      <section className="relative flex min-h-[540px] items-center justify-center overflow-hidden pt-12 md:min-h-[640px]">
+      <section className="relative flex min-h-[590px] items-center justify-center overflow-hidden pt-10 md:min-h-[690px]">
         <EsimRippleHero />
-        <div className="relative z-10 mx-auto w-full max-w-5xl px-4 py-16 text-center text-white">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-14 text-center text-white">
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-white/65">ESIMVAL / RESEUPPKOPPLING</p>
             <h1 className="mx-auto mt-5 max-w-4xl text-5xl font-semibold leading-[1.09] tracking-[-.055em] sm:text-6xl md:text-7xl">
@@ -38,25 +39,15 @@ export default function EsimHome() {
               Utforska leverantörer och destinationer på ett och samma ställe.
               Jämför aktuella erbjudanden direkt hos leverantören.
             </p>
-            <div className="mx-auto mt-9 max-w-2xl">
-              <label className="flex min-h-16 items-center gap-3 rounded-2xl border border-white/35 bg-white px-4 py-2 text-[#181818] shadow-[0_20px_65px_rgba(0,0,0,.22)] focus-within:ring-2 focus-within:ring-white/60">
-                <Search className="size-5 shrink-0 text-[#777]" aria-hidden="true" />
-                <span className="sr-only">Sök på eSIMval</span>
-                <input type="search" value={query} onChange={event => setQuery(event.target.value)}
-                  onKeyDown={event => { if (event.key === "Enter") scrollToResults() }}
-                  placeholder="Sök land, region eller leverantör…"
-                  className="min-w-0 flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-[#858585] sm:text-base" />
-                <button onClick={scrollToResults} type="button" className="shrink-0 rounded-xl bg-[#181818] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#393939]">Sök</button>
-              </label>
-              <p className="mt-3 text-xs text-white/55">Exempel: Turkiet, Europa, Airalo eller Saily</p>
+            <div className="mx-auto mt-10 w-full max-w-[1050px]">
+              <LargeHeroSearch value={query} onChange={setQuery} onSearch={scrollToResults}
+                label="Sök bland alla leverantörer och destinationer"
+                placeholder="Sök land, region eller leverantör…" />
+              <p className="mt-4 text-xs text-white/60">Exempel: Turkiet, Europa, Airalo eller Saily</p>
             </div>
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/providers" className="group inline-flex h-12 items-center gap-3 rounded-xl bg-white px-5 text-sm font-semibold text-[#181818] transition-colors hover:bg-[#e9e9e9]">
-                Alla leverantörer <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </Link>
-              <button onClick={scrollToResults} type="button" className="inline-flex h-12 items-center gap-3 rounded-xl border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                Utforska destinationer <ArrowDown className="size-4" />
-              </button>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <PrintifyPrimaryLink href="/providers">Utforska alla leverantörer</PrintifyPrimaryLink>
+              <PrintifySecondaryButton onClick={scrollToResults}>Utforska destinationer</PrintifySecondaryButton>
             </div>
           </motion.div>
         </div>
