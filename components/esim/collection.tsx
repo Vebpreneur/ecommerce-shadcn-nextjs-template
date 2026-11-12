@@ -91,6 +91,9 @@ function DestinationCard({ provider, destination }: { provider: Provider; destin
       <Link href={`/providers/${provider.slug}/${destination.slug}`} className="relative block aspect-[4/3] overflow-hidden bg-muted" aria-label={`Visa ${destination.name} hos ${provider.name}`}>
         <img src={destination.image} alt={destination.name} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <span className="absolute left-4 top-4 rounded-full border border-white/60 bg-white/95 px-3 py-1 text-xs font-medium text-black shadow-sm">{destination.kind}</span>
+        <span className="absolute bottom-4 left-4 flex size-12 items-center justify-center overflow-hidden rounded-xl border border-white/70 bg-white p-2 shadow-lg" title={provider.name}>
+          <img src={`https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt={`${provider.name} logotyp`} loading="lazy" className="size-full object-contain" />
+        </span>
       </Link>
       <CardContent className="flex flex-1 flex-col gap-3 p-5">
         <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{provider.name}</span>
