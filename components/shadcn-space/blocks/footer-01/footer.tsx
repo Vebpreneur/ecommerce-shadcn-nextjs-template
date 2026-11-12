@@ -97,48 +97,17 @@ type FooterData = {
 }
 
 const footerSections: FooterData[] = [
-  {
-    title: "Sitemap",
-    links: [
-      {
-        title: "Shop All",
-        href: "/shop",
-      },
-      {
-        title: "About Us",
-        href: "/about",
-      },
-      {
-        title: "Contact",
-        href: "/contact",
-      },
-      {
-        title: "FAQ",
-        href: "/faq",
-      },
-      {
-        title: "Wishlist",
-        href: "/wishlist",
-      },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      {
-        title: "Terms & Conditions",
-        href: "#",
-      },
-      {
-        title: "Privacy Policy",
-        href: "#",
-      },
-      {
-        title: "Shipping Info",
-        href: "#",
-      },
-    ],
-  },
+  { title: "Utforska", links: [
+    { title: "Alla leverantörer", href: "/providers" },
+    { title: "Airalo", href: "/providers/airalo" },
+    { title: "eSIM-guide", href: "/about" },
+    { title: "Artiklar", href: "/artiklar" },
+  ]},
+  { title: "Information", links: [
+    { title: "Om eSIMval", href: "/contact" },
+    { title: "Vanliga frågor", href: "/about" },
+    { title: "Kontakta oss", href: "/contact" },
+  ]},
 ]
 
 const Footer = () => {
@@ -161,33 +130,9 @@ const Footer = () => {
                   Utforska eSIM-leverantörer och destinationer. Välj ditt resmål och ta del av aktuella erbjudanden direkt hos leverantören.
                 </p>
 
-                {/* social links */}
-                <div className="flex items-center gap-6">
-                  <a
-                    href="#"
-                    className="-m-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    <TwitterIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="-m-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    <LinkedinIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="-m-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    <DribbbleIcon />
-                  </a>
-                  <a
-                    href="#"
-                    className="-m-2 p-2 text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    <InstagramIcon />
-                  </a>
-                </div>
+                <p className="text-sm leading-7 text-muted-foreground">
+                  eSIMval är en fristående katalog. Köp, betalning och support för eSIM-paket hanteras av respektive leverantör.
+                </p>
               </div>
             </div>
 
@@ -216,30 +161,9 @@ const Footer = () => {
               ))}
 
               <div className="animate-in space-y-6 delay-300 duration-1000 ease-in-out fill-mode-both fade-in slide-in-from-bottom-8">
-                <p className="text-xs font-bold tracking-[0.2em] text-foreground/50 uppercase">
-                  Contact
-                </p>
-                <ul className="flex flex-col gap-4">
-                  <li className="text-base leading-snug font-medium text-muted-foreground">
-                    81 Rivington Street <br /> London EC2A 3AY
-                  </li>
-                  <li>
-                    <a
-                      href="/contact"
-                      className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      Kontakta eSIMval
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="tel:+01051923556"
-                      className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      0105 192 3556
-                    </a>
-                  </li>
-                </ul>
+                <p className="text-xs font-bold tracking-[0.2em] text-foreground/50 uppercase">Hjälp & support</p>
+                <p className="text-sm leading-7 text-muted-foreground">Frågor om din beställning? Kontakta den leverantör där du gjorde köpet.</p>
+                <Link href="/contact" className="inline-block text-base font-medium text-muted-foreground transition-colors hover:text-foreground">Kontakt & information</Link>
               </div>
             </div>
           </div>
@@ -249,18 +173,8 @@ const Footer = () => {
               © 2026 eSIMval. Utforska eSIM-leverantörer och destinationer.
             </p>
             <div className="flex items-center gap-8">
-              <Link
-                href="#"
-                className="text-xs font-bold tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="#"
-                className="text-xs font-bold tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
-              >
-                Terms
-              </Link>
+              <Link href="/artiklar" className="text-xs font-bold tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground">Guider</Link>
+              <Link href="/contact" className="text-xs font-bold tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground">Kontakt</Link>
             </div>
           </div>
         </div>
