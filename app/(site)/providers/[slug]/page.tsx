@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const provider = getProvider(slug)
   if (!provider) return { title: "Leverantören kunde inte hittas" }
   return {
-    title: `${provider.name} – eSIM & destinationer | Nova Store`,
+    title: `${provider.name} – eSIM & destinationer | eSIMval`,
     description: provider.description,
   }
 }
