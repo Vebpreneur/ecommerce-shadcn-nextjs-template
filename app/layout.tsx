@@ -8,16 +8,16 @@ import { CartProvider } from "@/components/cart-context"
 import { WishlistProvider } from "@/components/wishlist-context"
 
 export const metadata: Metadata = {
-  title: "Nova Store | Premium Everyday Style",
+  title: "eSIMval | Jämför eSIM-leverantörer",
   description:
-    "Elevate your everyday look with Nova Store. Shop our curated collection of premium quality products with free shipping and secure payments.",
-  keywords: "ecommerce, fashion, lifestyle, premium products, nova store",
+    "Elevate your everyday look with eSIMval. Shop our curated collection of premium quality products with free shipping and secure payments.",
+  keywords: "esim, esimval, reseuppkoppling, leverantörer, destinationer",
   openGraph: {
-    title: "Nova Store | Premium Everyday Style",
+    title: "eSIMval | Premium Everyday Style",
     description:
-      "Elevate your everyday look with Nova Store. Shop our curated collection of premium quality products.",
+      "Utforska eSIM-leverantörer och destinationer på eSIMval.",
     type: "website",
-    locale: "en_US",
+    locale: "sv_SE",
   },
 }
 
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="sv"
       suppressHydrationWarning
       className={cn(
         "antialiased",
