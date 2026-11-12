@@ -1,0 +1,20 @@
+/* Reused from the existing Commercify / Printify animated border idea. */
+@keyframes esim-printify-noise-shift {
+  0% { transform:translate3d(-5%,-5%,0) rotate(0deg) scale(1.08); }
+  50% { transform:translate3d(5%,5%,0) rotate(20deg) scale(1.20); }
+  100% { transform:translate3d(-5%,-5%,0) rotate(0deg) scale(1.08); }
+}
+.esim-printify-noise { position:relative; isolation:isolate; overflow:hidden; background:#cbd5e1; }
+.esim-printify-noise::before {
+  content:""; position:absolute; z-index:-2; inset:-140%;
+  background:conic-gradient(from 45deg,#ff6496,#6496ff,#ffc864,#ff6496,#6496ff);
+  animation:esim-printify-noise-shift 8s ease-in-out infinite;
+}
+.esim-printify-noise::after {
+  content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+}
+.esim-hero-search { max-width:1050px; }
+@media (prefers-reduced-motion: reduce) {
+  .esim-printify-noise::before { animation:none; }
+}
