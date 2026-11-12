@@ -3,6 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowUpRight, Globe2, Smartphone, ShieldCheck } from "lucide-react"
 import { DESTINATIONS, PROVIDERS, getDestination, getProvider } from "@/lib/esim"
+import { ProviderLogo } from "@/components/esim/provider-logo"
 
 type Props = { params: Promise<{ slug: string; destination: string }> }
 
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const place = getDestination(destination)
   if (!provider || !place) return { title: "Destinationen kunde inte hittas" }
   return {
-    title: `eSIM ${place.name} hos ${provider.name} | Nova Store`,
+    title: `eSIM ${place.name} hos ${provider.name} | eSIMval`,
     description: `Utforska eSIM för ${place.name}. Kontrollera aktuella paket och villkor hos ${provider.name}.`,
   }
 }
@@ -47,9 +48,7 @@ export default async function DestinationPage({ params }: Props) {
           </div>
           <div className="flex flex-col justify-center">
             <div className="mb-5 flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-2 shadow-sm">
-                <img src={`https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt={`${provider.name} logotyp`} className="size-full object-contain" />
-              </span>
+              <ProviderLogo provider={provider} size="inline" />
               <span className="text-sm font-semibold text-foreground">{provider.name}</span>
             </div>
             <p className="text-xs font-semibold uppercase tracking-[.15em] text-muted-foreground">{provider.name} / DESTINATIONER</p>
