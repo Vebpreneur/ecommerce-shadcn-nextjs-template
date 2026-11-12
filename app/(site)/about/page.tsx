@@ -1,163 +1,87 @@
-import { Sparkles, Leaf, ShieldCheck, Heart, ArrowUpRight } from "lucide-react"
 import type { Metadata } from "next"
-import { Instrument_Serif } from "next/font/google"
-import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["italic"],
-})
+import { ArrowUpRight, Check, CircleHelp, QrCode, Settings2, Smartphone, Wifi, BadgeCheck, ArrowRight, ScanLine } from "lucide-react"
+import { ARTICLES } from "@/lib/esim-articles"
+import { ArticleCard } from "@/components/esim/article-card"
 
 export const metadata: Metadata = {
-  title: "About Us | Nova Store",
-  description:
-    "Discover the story behind Nova Store—a brand built on quality, minimalism, and the pursuit of timeless style.",
+  title: "Så fungerar eSIM – installationsguide | eSIMval",
+  description: "Lär dig vad eSIM är, hur du kontrollerar kompatibilitet och hur du installerar och aktiverar en eSIM-profil.",
 }
 
-const VALUES = [
-  {
-    icon: Sparkles,
-    title: "Timeless Design",
-    description:
-      "We believe in products that transcend trends. Our designs are focused on longevity and classic aesthetics.",
-  },
-  {
-    icon: Leaf,
-    title: "Sustainability",
-    description:
-      "From our materials to our packaging, we prioritize the planet without compromising on luxury.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Premium Quality",
-    description:
-      "Every item in our collection is rigorously tested for durability and excellence.",
-  },
-  {
-    icon: Heart,
-    title: "Customer First",
-    description:
-      "Your experience is our priority. We offer dedicated support and a seamless shopping journey.",
-  },
+const STEPS = [
+  {number:"01",Icon:Smartphone,title:"Kontrollera kompatibiliteten",copy:"Se till att den exakta mobilmodellen stöder eSIM och uppfyller leverantörens krav. Kontrollera även om telefonen är operatörslåst."},
+  {number:"02",Icon:BadgeCheck,title:"Välj leverantör och paket",copy:"Granska destinationslista, datamängd, giltighetstid, startvillkor och priser på leverantörens webbplats."},
+  {number:"03",Icon:QrCode,title:"Installera eSIM-profilen",copy:"Följ instruktionerna från leverantören. Det kan innebära att skanna en QR-kod eller installera profilen manuellt."},
+  {number:"04",Icon:Wifi,title:"Aktivera rätt mobilprofil",copy:"Välj eSIM-profilen för mobildata i telefonens inställningar. Anpassa roaminginställningar enligt leverantörens instruktioner."},
 ]
 
-export default function AboutPage() {
-  return (
-    <main className="bg-background">
-      {/* Hero Section - Brand Story */}
-      <section className="relative flex h-[40vh] items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/assets/about/hero.png"
-            alt="Nova Store Brand Story"
-            className="h-full w-full object-cover brightness-50"
-          />
+export default function AboutPage(){
+  return <main className="bg-[#f9f8f5] text-[#181818]">
+    <section className="relative overflow-hidden bg-[#111214] px-4 pb-24 pt-28 text-white">
+      <div className="pointer-events-none absolute inset-0 opacity-20" style={{backgroundImage:"linear-gradient(#ffffff28 1px, transparent 1px),linear-gradient(90deg,#ffffff28 1px,transparent 1px)",backgroundSize:"60px 60px"}}/>
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 sm:px-6 lg:grid-cols-2 lg:px-16">
+        <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-white/55">GUIDE / ESIM</p>
+          <h1 className="mt-6 text-5xl font-semibold leading-[1.08] tracking-[-.055em] sm:text-6xl">Uppkopplad på resan. Utan fysiskt SIM-kort.</h1>
+          <p className="mt-6 max-w-xl text-base leading-8 text-white/70">En visuell introduktion till hur eSIM fungerar, hur du installerar en digital mobilprofil och vad du behöver kontrollera före avresan.</p>
+          <Link href="/providers" className="mt-8 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-4 text-sm font-semibold text-[#171717]">Utforska leverantörer <ArrowUpRight className="size-4"/></Link>
         </div>
-        <div className="relative z-10 max-w-4xl px-4 text-center text-white">
-          <h1 className="mb-6 text-5xl font-medium tracking-tight md:text-7xl">
-            Redefining{" "}
-            <span className={instrumentSerif.className}>Modern Luxury</span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-xl font-light opacity-90 md:text-2xl">
-            Nova Store was founded on a simple principle: high-quality
-            essentials shouldn't be complicated.
-          </p>
+        <div className="relative mx-auto flex w-full max-w-sm items-center justify-center rounded-[38px] border border-white/15 bg-white/5 p-10 shadow-2xl">
+          <div className="relative w-60 overflow-hidden rounded-[36px] border-[8px] border-[#343434] bg-[#faf9f7] p-5 shadow-2xl">
+            <div className="mx-auto mb-10 h-2 w-20 rounded-full bg-[#333]"/>
+            <div className="rounded-2xl border border-[#e9e7e1] bg-white p-5 text-[#171717]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#777]">MOBILNÄT</span>
+              <div className="mt-6 flex size-14 items-center justify-center rounded-xl bg-[#f0efe9]"><QrCode className="size-8"/></div>
+              <p className="mt-5 text-base font-semibold">Lägg till eSIM</p>
+              <p className="mt-2 text-xs leading-6 text-[#777]">Skanna den riktiga QR-koden som du får från din leverantör.</p>
+            </div>
+            <div className="mt-9 h-3 rounded-full bg-[#e2e2e2]"/>
+            <div className="mt-3 h-3 w-3/4 rounded-full bg-[#e8e8e8]"/>
+            <div className="my-8 h-2 rounded-full bg-[#d6d6d6]"/>
+          </div>
+          <span className="absolute bottom-10 right-0 flex items-center gap-2 rounded-xl border border-white/15 bg-[#2c3034] px-4 py-3 text-xs text-white shadow-xl"><ScanLine className="size-5"/> Illustration – ingen aktiv QR-kod</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Mission Section */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-16">
-        <div className="grid items-center gap-16 md:grid-cols-2">
-          <div className="space-y-6">
-            <h2 className="text-4xl font-medium tracking-tight text-foreground">
-              Our Mission is to <br />
-              <span className="text-primary italic">Simplify Your Style.</span>
-            </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Since 2024, Nova Store has been curated with a focus on minimalist
-              aesthetics and maximum impact. We partner with the world's finest
-              artisans to bring you products that are as functional as they are
-              beautiful.
-            </p>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              We don't just sell products; we offer a lifestyle of
-              intentionality. Every piece in our collection is chosen to serve a
-              purpose and last a lifetime.
-            </p>
-          </div>
-          <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl">
-            <img
-              src="/assets/about/quality.png"
-              alt="Our Mission"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+    <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-16">
+      <div className="grid items-start gap-12 lg:grid-cols-[.7fr_1.3fr]">
+        <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">FRÅN VAL TILL UPPKOPPLING</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">Fyra steg till ditt eSIM.</h2>
+          <p className="mt-5 leading-8 text-[#777]">Stegen är generella. Menynamn och installationsförfarande varierar mellan olika telefoner och leverantörer.</p></div>
+        <div className="grid gap-4 sm:grid-cols-2">{STEPS.map(step=><div key={step.number} className="rounded-[22px] border border-[#e5e3dc] bg-white p-7 shadow-sm">
+          <div className="flex items-start justify-between"><span className="text-xs font-semibold text-[#999]">{step.number}</span><step.Icon className="size-7 text-[#333]" strokeWidth={1.5}/></div>
+          <h3 className="mt-9 text-xl font-semibold tracking-tight">{step.title}</h3>
+          <p className="mt-3 text-sm leading-7 text-[#777]">{step.copy}</p>
+        </div>)}</div>
+      </div>
+    </section>
 
-      {/* Values Section */}
-      <section className="bg-muted/30 px-4 py-24 sm:px-6 lg:px-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-medium tracking-tight">
-              The Nova Philosophy
-            </h2>
-            <p className="text-muted-foreground">
-              What drives us every single day.
-            </p>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {VALUES.map((value, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-border/50 bg-background p-8 transition-shadow hover:shadow-lg"
-              >
-                <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-primary/10">
-                  <value.icon className="size-6 text-primary" />
-                </div>
-                <h3 className="mb-3 text-xl font-medium">{value.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
+    <section className="border-y border-[#e5e3dd] bg-white px-4 py-24 sm:px-6">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:px-16">
+        <div className="overflow-hidden rounded-[26px]"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9?auto=format&fit=crop&w=1300&q=85" alt="Mobiltelefon i handen" className="aspect-[1.25] w-full object-cover"/></div>
+        <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">INSTALLATION & AKTIVERING</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-.045em]">QR-kod eller manuell installation?</h2>
+          <p className="mt-6 leading-8 text-[#6d6d6d]">De flesta leverantörer erbjuder instruktioner för att lägga till en eSIM-profil. Ofta används en QR-kod, men vissa använder också en aktiveringskod eller en app.</p>
+          <div className="mt-8 space-y-5">{[
+            ["Använd stabilt internet","Du behöver normalt internet för att hämta eSIM-profilen."],
+            ["Skanna leverantörens kod","QR-koden är personlig och tillhandahålls vid köp. Illustrationen ovan är ingen aktiveringskod."],
+            ["Kontrollera startvillkoren","Giltighetstiden kan börja vid installation, aktivering eller första nätverksanslutning."],
+          ].map(([title,copy])=><div key={title} className="flex items-start gap-3"><span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-[#181818] text-white"><Check className="size-4"/></span><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-7 text-[#777]">{copy}</p></div></div>)}</div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Final CTA */}
-      <section className="px-4 py-24 text-center">
-        <div className="mx-auto max-w-2xl space-y-8">
-          <h2 className="text-4xl font-medium">
-            Ready to experience <br />
-            the difference?
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Join thousands of others who have simplified their style with Nova
-            Store.
-          </p>
-          <div className="pt-4">
-            <Link href="/shop">
-              <Button
-                className={cn(
-                  "group relative h-12 w-fit overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6",
-                  "cursor-pointer"
-                )}
-              >
-                <span className="relative z-10 transition-all duration-500">
-                  Explore the Collection
-                </span>
-                <span className="absolute right-1 flex h-9 w-9 items-center justify-center rounded-full bg-background text-foreground transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
-                  <ArrowUpRight size={18} />
-                </span>
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
-  )
+    <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-16">
+      <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">BRA ATT VETA</p><h2 className="mt-4 text-4xl font-semibold">Vanliga frågor</h2>
+      <div className="mt-9 grid gap-3 lg:grid-cols-2">{[
+        ["Behöver jag ta ut mitt vanliga SIM-kort?","Inte nödvändigtvis. Många kompatibla telefoner kan ha flera SIM-profiler, men vilka som kan vara aktiva samtidigt beror på enheten."],
+        ["Fungerar eSIM på alla telefoner?","Nej. Kontrollera modellens exakta eSIM-stöd och eventuella operatörslåsningar."],
+        ["Behövs dataroaming?","Det beror på eSIM-paketet och leverantörens anvisningar. Kontrollera inställningarna innan du aktiverar mobildata."],
+        ["Ingår telefonnummer och vanliga samtal?","Vissa erbjudanden är endast för mobildata. Kontrollera paketets innehåll innan köp."],
+      ].map(([question,answer])=><details key={question} className="group rounded-xl border border-[#e6e4df] bg-white px-6 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold">{question}<span className="text-[#888]">+</span></summary><p className="mt-4 text-sm leading-7 text-[#777]">{answer}</p></details>)}</div>
+      <div className="mt-16 flex items-center justify-between gap-4"><h2 className="text-2xl font-semibold">Fördjupa dig i våra guider</h2><Link href="/artiklar" className="inline-flex items-center gap-2 text-sm font-semibold">Alla artiklar <ArrowRight className="size-4"/></Link></div>
+      <div className="mt-7 grid gap-6 md:grid-cols-2">{ARTICLES.map(a=><ArticleCard key={a.slug} article={a}/>)}</div>
+    </section>
+  </main>
 }
