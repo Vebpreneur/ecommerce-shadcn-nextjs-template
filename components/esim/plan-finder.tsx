@@ -1,0 +1,48 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { ArrowUpRight, CheckCircle2, Info, Smartphone, CalendarDays, Database } from "lucide-react"
+import type { Provider } from "@/lib/esim"
+
+const DATA_NEEDS = ["Lite surf", "Normal användning", "Mycket surf", "Obegränsat (om tillgängligt)"]
+const DURATION_NEEDS = ["Upp till 7 dagar", "8–15 dagar", "16–30 dagar", "Längre än 30 dagar"]
+
+/**
+ * A preference guide, not fabricated package SKUs.
+ * Later replace with actual provider-specific verified plans.
+ */
+export function EsimPlanFinder({ provider }: { provider: Provider }) {
+  const [dataNeed, setDataNeed] = useState("")
+  const [duration, setDuration] = useState("")
+  return <section className="overflow-hidden rounded-[24px] border border-[#e6e4df] bg-white shadow-sm">
+    <div className="border-b border-[#eceae6] p-6 sm:p-8">
+      <div className="flex items-start justify-between gap-5">
+        <div><span className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#777]">VÄLJ DINA BEHOV</span>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight">Hitta ett passande eSIM</h2></div>
+        <Info className="size-5 text-[#777]" />
+      </div>
+      <p className="mt-3 text-sm leading-7 text-[#777]">Ange hur du planerar att använda mobildata. Vi har ännu ingen verifierad paketlista från {provider.name}; valen här är en vägledning, inte faktiska erbjudanden.</p>
+    </div>
+    <div className="grid gap-6 p-6 sm:grid-cols-2 sm:p-8">
+      <div>
+        <label htmlFor="data-need" className="mb-3 flex items-center gap-2 text-sm font-semibold"><Database className="size-4"/> Dataanvändning</label>
+        <select id="data-need" value={dataNeed} onChange={e=>setDataNeed(e.target.value)} className="h-12 w-full rounded-xl border border-[#dedcd7] bg-[#f9f8f5] px-4 text-sm outline-none focus:border-[#666]">
+          <option value="">Välj dataanvändning</option>{DATA_NEEDS.map(v=><option key={v}>{v}</option>)}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="duration-need" className="mb-3 flex items-center gap-2 text-sm font-semibold"><CalendarDays className="size-4"/> Resans längd</label>
+        <select id="duration-need" value={duration} onChange={e=>setDuration(e.target.value)} className="h-12 w-full rounded-xl border border-[#dedcd7] bg-[#f9f8f5] px-4 text-sm outline-none focus:border-[#666]">
+          <option value="">Välj reslängd</option>{DURATION_NEEDS.map(v=><option key={v}>{v}</option>)}
+        </select>
+      </div>
+    </div>
+    <div className="border-t border-[#eceae6] bg-[#f8f7f4] p-6 sm:p-8">
+      {dataNeed&&duration&&<p className="mb-4 flex items-center gap-2 text-sm text-[#555]"><CheckCircle2 className="size-4"/> Dina önskemål: {dataNeed.toLowerCase()}, {duration.toLowerCase()}.</p>}
+      <a href={provider.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer" className="flex min-h-14 items-center justify-center gap-3 rounded-xl bg-[#181818] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#333]">Se verifierade paket hos {provider.name} <ArrowUpRight className="size-5"/></a>
+      <p className="mt-4 text-xs leading-6 text-[#777]">Aktuell datapott, giltighet, täckning, pris och övriga villkor kontrolleras på leverantörens webbplats. Länken kan ge oss provision.</p>
+      <Link href="/about" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4"><Smartphone className="size-4"/> Så installerar du eSIM</Link>
+    </div>
+  </section>
+}
