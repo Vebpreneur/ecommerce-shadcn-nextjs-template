@@ -13,9 +13,9 @@ type CollectionProps = { provider?: Provider }
 
 function MovingArrow({ label }: { label: string }) {
   return (
-    <span className="group relative inline-flex h-10 items-center overflow-hidden rounded-full bg-primary py-1 ps-4 pe-12 text-sm font-medium text-primary-foreground transition-all duration-500 hover:ps-12 hover:pe-4">
+    <span className="group relative inline-flex h-10 items-center overflow-hidden rounded-full bg-[#171717] py-1 ps-4 pe-12 text-sm font-medium text-white transition-all duration-500 hover:ps-12 hover:pe-4">
       <span className="relative z-10">{label}</span>
-      <span className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-background text-foreground transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
+      <span className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#171717] transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
         <ArrowUpRight size={16} />
       </span>
     </span>
@@ -86,42 +86,43 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
   )
 }
 
+
 function StoreCard({ provider }: { provider: Provider }) {
   return (
-    <Card className="group flex h-full flex-col gap-0 overflow-hidden rounded-2xl border bg-card p-0 ring-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
-      <Link href={`/providers/${provider.slug}`} aria-label={`Visa ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-muted">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7e6e3] bg-white shadow-[0_4px_20px_rgba(20,20,20,.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cbc9c5] hover:shadow-[0_20px_50px_rgba(20,20,20,.11)]">
+      <Link href={`/providers/${provider.slug}`} aria-label={`Visa ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-[#eaeae7]">
         <img src={provider.cover} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <ProviderLogo provider={provider} className="absolute bottom-4 left-4" />
       </Link>
-      <CardContent className="flex flex-1 flex-col gap-3 p-5">
-        <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">eSIM-leverantör</span>
-        <h2 className="text-xl font-semibold tracking-tight"><Link href={`/providers/${provider.slug}`} className="hover:underline">{provider.name}</Link></h2>
-        <p className="min-h-12 text-sm leading-6 text-muted-foreground">{provider.description}</p>
-        <Link href={`/providers/${provider.slug}`} className="mt-auto block pt-3" aria-label={`Utforska ${provider.name}`}>
-          <MovingArrow label="Visa leverantör" />
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-6 text-[#181818]">
+        <span className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#777]">eSIM-leverantör</span>
+        <h2 className="mt-2 text-xl font-semibold tracking-tight"><Link href={`/providers/${provider.slug}`} className="hover:underline">{provider.name}</Link></h2>
+        <p className="mb-5 mt-3 min-h-12 text-sm leading-6 text-[#737373]">{provider.description}</p>
+        <Link href={`/providers/${provider.slug}`} className="mt-auto flex items-center justify-between border-t border-[#ededed] pt-4 text-sm font-semibold" aria-label={`Utforska ${provider.name}`}>
+          Visa leverantör <span className="flex size-9 items-center justify-center rounded-full border border-[#dedede] transition-all group-hover:bg-[#181818] group-hover:text-white"><ArrowUpRight className="size-4" /></span>
         </Link>
-      </CardContent>
-    </Card>
+      </div>
+    </article>
   )
 }
 
 function DestinationCard({ provider, destination }: { provider: Provider; destination: typeof DESTINATIONS[number] }) {
   return (
-    <Card className="group flex h-full flex-col gap-0 overflow-hidden rounded-2xl border bg-card p-0 ring-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
-      <Link href={`/providers/${provider.slug}/${destination.slug}`} className="relative block aspect-[4/3] overflow-hidden bg-muted" aria-label={`Visa ${destination.name} hos ${provider.name}`}>
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7e6e3] bg-white shadow-[0_4px_20px_rgba(20,20,20,.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cbc9c5] hover:shadow-[0_20px_50px_rgba(20,20,20,.11)]">
+      <Link href={`/providers/${provider.slug}/${destination.slug}`} aria-label={`Visa ${destination.name} hos ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-[#eaeae7]">
         <img src={destination.image} alt={destination.name} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        <span className="absolute left-4 top-4 rounded-full border border-white/60 bg-white/95 px-3 py-1 text-xs font-medium text-black shadow-sm">{destination.kind}</span>
+        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-[#222] shadow-sm">{destination.kind}</span>
         <ProviderLogo provider={provider} className="absolute bottom-4 left-4" />
       </Link>
-      <CardContent className="flex flex-1 flex-col gap-3 p-5">
-        <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{provider.name}</span>
-        <h2 className="text-xl font-semibold tracking-tight"><Link href={`/providers/${provider.slug}/${destination.slug}`} className="hover:underline">{destination.name}</Link></h2>
-        <p className="min-h-12 text-sm leading-6 text-muted-foreground">Utforska eSIM för {destination.name} och kontrollera tillgängliga paket hos {provider.name}.</p>
-        <Link href={`/providers/${provider.slug}/${destination.slug}`} className="mt-auto block pt-3" aria-label={`Utforska ${destination.name}`}>
-          <MovingArrow label="Utforska eSIM" />
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-6 text-[#181818]">
+        <span className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#777]">{provider.name}</span>
+        <h2 className="mt-2 text-xl font-semibold tracking-tight"><Link href={`/providers/${provider.slug}/${destination.slug}`} className="hover:underline">{destination.name}</Link></h2>
+        <p className="mb-5 mt-3 min-h-12 text-sm leading-6 text-[#737373]">Utforska eSIM för {destination.name} och kontrollera aktuella alternativ hos {provider.name}.</p>
+        <Link href={`/providers/${provider.slug}/${destination.slug}`} className="mt-auto flex items-center justify-between border-t border-[#ededed] pt-4 text-sm font-semibold" aria-label={`Utforska ${destination.name}`}>
+          Utforska eSIM <span className="flex size-9 items-center justify-center rounded-full border border-[#dedede] transition-all group-hover:bg-[#181818] group-hover:text-white"><ArrowUpRight className="size-4" /></span>
         </Link>
-      </CardContent>
-    </Card>
+      </div>
+    </article>
   )
 }
 
@@ -132,11 +133,11 @@ function CollectionEditorial({ provider }: CollectionProps) {
     : "Utforska leverantörer på ett och samma ställe. Öppna en storefront, välj destination och fortsätt till leverantörens egna erbjudanden."
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-16 lg:py-28">
-      <div className="grid overflow-hidden rounded-3xl bg-muted/30 lg:grid-cols-2">
+      <div className="grid overflow-hidden rounded-3xl border border-[#e8e6e2] bg-[#eeede9] text-[#191919] lg:grid-cols-2">
         <div className="flex flex-col justify-center gap-7 p-8 sm:p-12 lg:p-16">
-          <p className="text-xs font-semibold uppercase tracking-[.18em] text-muted-foreground">ENKLARE ATT UTFORSKA</p>
+          <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">ENKLARE ATT UTFORSKA</p>
           <h2 className="max-w-lg text-3xl font-medium tracking-tight md:text-5xl">{title}</h2>
-          <p className="max-w-lg text-base leading-8 text-muted-foreground">{description}</p>
+          <p className="max-w-lg text-base leading-8 text-[#626262]">{description}</p>
           <div>
             <Link href={provider ? "/providers" : "/providers/airalo"} className="group inline-block">
               <MovingArrow label={provider ? "Alla leverantörer" : "Upptäck Airalo"} />
@@ -173,30 +174,30 @@ export default function EsimCollection({ provider }: CollectionProps) {
       <section id="esim-results" ref={resultsRef} className="mx-auto max-w-7xl scroll-mt-24 px-4 pt-16 text-[#171717] sm:px-6 lg:px-16">
         <div className="flex flex-col items-start justify-between gap-7 md:flex-row md:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[.16em] text-muted-foreground">{provider ? "DESTINATIONER" : "LEVERANTÖRSKATALOG"}</p>
+            <p className="text-xs font-semibold uppercase tracking-[.16em] text-[#777]">{provider ? "DESTINATIONER" : "LEVERANTÖRSKATALOG"}</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">{provider ? `Utforska ${provider.name}` : "Alla leverantörer"}</h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#717171]">
               {provider ? "Destinationerna är exempel för navigering. Aktuellt utbud, täckning och priser verifieras hos leverantören." : "Välj leverantör för att besöka deras storefront och se destinationer."}
             </p>
           </div>
-          <span className="shrink-0 text-sm text-muted-foreground">{total} {provider ? "destinationer" : "leverantörer"}</span>
+          <span className="shrink-0 text-sm text-[#777]">{total} {provider ? "destinationer" : "leverantörer"}</span>
         </div>
-        <div className="mt-8 flex flex-col justify-between gap-4 border-y border-border py-5 md:flex-row md:items-center">
+        <div className="mt-8 flex flex-col justify-between gap-4 border-y border-[#e4e2de] py-5 md:flex-row md:items-center">
           <div className="flex flex-wrap gap-2" role="group" aria-label={provider ? "Filtrera destinationer" : "Sortera leverantörer"}>
             {tabs.map(tab => (
-              <Button key={tab} type="button" variant={tab === filter ? "default" : "outline"} onClick={() => setFilter(tab)}
-                className="h-9 rounded-lg px-5 text-sm font-medium transition-colors">{tab}</Button>
+              <Button key={tab} type="button" variant="outline" onClick={() => setFilter(tab)}
+                className={`h-9 rounded-lg border px-5 text-sm font-medium transition-colors ${tab === filter ? "border-[#181818] bg-[#181818] text-white hover:bg-[#383838] hover:text-white" : "border-[#dededb] bg-white text-[#333] hover:bg-[#f0efec] hover:text-[#181818]"}`}>{tab}</Button>
             ))}
           </div>
-          <label className="flex h-10 w-full items-center gap-2 rounded-lg border border-border bg-background px-3 md:max-w-xs">
-            <Search className="size-4 text-muted-foreground" aria-hidden="true" />
+          <label className="flex h-10 w-full items-center gap-2 rounded-lg border border-[#dededb] bg-white px-3 md:max-w-xs">
+            <Search className="size-4 text-[#777]" aria-hidden="true" />
             <span className="sr-only">Sök {provider ? "destination" : "leverantör"}</span>
             <input value={query} onChange={event => setQuery(event.target.value)} placeholder={provider ? "Sök land eller region" : "Sök leverantör"} type="search"
-              className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
+              className="w-full bg-transparent text-sm text-[#222] outline-none placeholder:text-[#888]" />
           </label>
         </div>
         {total === 0 ? (
-          <div className="py-20 text-center text-muted-foreground">Inga träffar. Prova en annan sökning.</div>
+          <div className="py-20 text-center text-[#777]">Inga träffar. Prova en annan sökning.</div>
         ) : (
           <div className="grid grid-cols-1 gap-6 py-9 sm:grid-cols-2 lg:grid-cols-4">
             {provider
@@ -206,10 +207,10 @@ export default function EsimCollection({ provider }: CollectionProps) {
         )}
       </section>
       <CollectionEditorial provider={provider} />
-      <section className="border-t border-border bg-muted/30 px-4 py-20 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[.17em] text-muted-foreground">UPPTÄCK MER</p>
+      <section className="border-t border-[#262626] bg-[#111214] px-4 py-20 text-center text-white">
+        <p className="text-xs font-semibold uppercase tracking-[.17em] text-white/60">UPPTÄCK MER</p>
         <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-medium tracking-tight md:text-5xl">Din nästa destination väntar.</h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted-foreground">Vi hjälper dig att upptäcka leverantörer och alternativ – själva köpet gör du alltid hos leverantören.</p>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/65">Vi hjälper dig att upptäcka leverantörer och alternativ – själva köpet gör du alltid hos leverantören.</p>
         <Link href={provider ? "/providers" : "/providers/airalo"} className="group mt-7 inline-block">
           <MovingArrow label={provider ? "Se alla leverantörer" : "Börja utforska"} />
         </Link>
