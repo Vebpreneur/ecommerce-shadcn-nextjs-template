@@ -32,7 +32,7 @@ const Feature = ({ featureData }: { featureData: Features }) => {
                 Why Choose Us?
               </Badge>
               <h1 className="text-center text-3xl font-semibold tracking-[-1px] md:text-4xl">
-                Why Shop With Nova Store? The Ultimate Online Shopping
+                Why Shop With eSIMval? The Ultimate Online Shopping
                 Experience
               </h1>
             </motion.div>
