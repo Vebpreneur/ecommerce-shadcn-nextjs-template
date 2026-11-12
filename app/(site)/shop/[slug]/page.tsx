@@ -23,12 +23,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) {
     return {
-      title: "Product Not Found | Nova Store",
+      title: "Product Not Found | eSIMval",
     }
   }
 
   return {
-    title: `${product.name} | Nova Store`,
+    title: `${product.name} | eSIMval`,
     description: product.description,
   }
 }
