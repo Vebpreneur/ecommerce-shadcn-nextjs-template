@@ -46,6 +46,12 @@ export default async function DestinationPage({ params }: Props) {
             <span className="absolute left-5 top-5 rounded-full bg-white px-4 py-2 text-xs font-semibold text-black">{place.kind}</span>
           </div>
           <div className="flex flex-col justify-center">
+            <div className="mb-5 flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-2 shadow-sm">
+                <img src={`https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt={`${provider.name} logotyp`} className="size-full object-contain" />
+              </span>
+              <span className="text-sm font-semibold text-foreground">{provider.name}</span>
+            </div>
             <p className="text-xs font-semibold uppercase tracking-[.15em] text-muted-foreground">{provider.name} / DESTINATIONER</p>
             <h1 className="mt-5 text-5xl font-medium tracking-tight md:text-6xl">eSIM för {place.name}</h1>
             <p className="mt-7 max-w-lg text-base leading-8 text-muted-foreground">
