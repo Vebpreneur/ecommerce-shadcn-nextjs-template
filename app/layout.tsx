@@ -10,10 +10,10 @@ import { WishlistProvider } from "@/components/wishlist-context"
 export const metadata: Metadata = {
   title: "eSIMval | Jämför eSIM-leverantörer",
   description:
-    "Elevate your everyday look with eSIMval. Shop our curated collection of premium quality products with free shipping and secure payments.",
+    "Utforska eSIM-leverantörer och destinationer. Jämför alternativ och gå vidare till leverantörernas erbjudanden.",
   keywords: "esim, esimval, reseuppkoppling, leverantörer, destinationer",
   openGraph: {
-    title: "eSIMval | Premium Everyday Style",
+    title: "eSIMval | Jämför eSIM-leverantörer",
     description:
       "Utforska eSIM-leverantörer och destinationer på eSIMval.",
     type: "website",
