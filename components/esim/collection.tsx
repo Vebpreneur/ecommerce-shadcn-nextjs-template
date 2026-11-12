@@ -11,11 +11,11 @@ import { ProviderLogo } from "@/components/esim/provider-logo"
 
 type CollectionProps = { provider?: Provider }
 
-function MovingArrow({ label }: { label: string }) {
+function MovingArrow({ label, inverse = false }: { label: string; inverse?: boolean }) {
   return (
-    <span className="group relative inline-flex h-10 items-center overflow-hidden rounded-full bg-[#171717] py-1 ps-4 pe-12 text-sm font-medium text-white transition-all duration-500 hover:ps-12 hover:pe-4">
+    <span className={`group relative inline-flex h-10 items-center overflow-hidden rounded-full py-1 ps-4 pe-12 text-sm font-medium transition-all duration-500 hover:ps-12 hover:pe-4 ${inverse ? "bg-white text-[#181818]" : "bg-[#171717] text-white"}`}>
       <span className="relative z-10">{label}</span>
-      <span className="absolute right-1 flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#171717] transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
+      <span className={`absolute right-1 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45 ${inverse ? "bg-[#181818] text-white" : "bg-white text-[#171717]"}`}>
         <ArrowUpRight size={16} />
       </span>
     </span>
@@ -68,7 +68,7 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
           </motion.div>
         </div>
       </section>
-      <section className="border-y border-border/50 bg-muted/20">
+      <section className="border-y border-white/10 bg-[#111214] text-white">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-7 md:grid-cols-3">
           {[
             { Icon: Globe2, text: "Länder, regioner och globala destinationer" },
@@ -76,8 +76,8 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
             { Icon: ShieldCheck, text: "Se aktuella villkor hos leverantören" },
           ].map(({ Icon, text }) => (
             <div key={text} className="flex items-center justify-center gap-3">
-              <Icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-              <p className="text-center text-sm font-medium">{text}</p>
+              <Icon className="size-5 shrink-0 text-white/75" aria-hidden="true" />
+              <p className="text-center text-sm font-medium text-white/80">{text}</p>
             </div>
           ))}
         </div>
@@ -212,7 +212,7 @@ export default function EsimCollection({ provider }: CollectionProps) {
         <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-medium tracking-tight md:text-5xl">Din nästa destination väntar.</h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-white/65">Vi hjälper dig att upptäcka leverantörer och alternativ – själva köpet gör du alltid hos leverantören.</p>
         <Link href={provider ? "/providers" : "/providers/airalo"} className="group mt-7 inline-block">
-          <MovingArrow label={provider ? "Se alla leverantörer" : "Börja utforska"} />
+          <MovingArrow inverse label={provider ? "Se alla leverantörer" : "Börja utforska"} />
         </Link>
       </section>
     </main>
