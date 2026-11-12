@@ -1,0 +1,19 @@
+.esim-ripple-hero {
+  background:
+    radial-gradient(ellipse 70% 120% at 50% 20%, #242a30 0%, #15191e 56%, #090b0e 100%);
+}
+.esim-ripple-hero-grid { opacity: .95; }
+.esim-ripple-cell {
+  border-right: 1px solid rgba(214, 224, 233, .115);
+  border-bottom: 1px solid rgba(214, 224, 233, .115);
+  background: transparent;
+  cursor: crosshair;
+  transition: background-color 380ms ease, border-color 380ms ease;
+}
+.esim-ripple-cell:hover {
+  background: rgba(190, 202, 214, .16) !important;
+}
+.esim-ripple-cell:focus-visible { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  .esim-ripple-cell { transition: none !important; }
+}
