@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowUpRight, BookOpen, HelpCircle, Headphones, MessageSquare, ShieldCheck, Globe2 } from "lucide-react"
+import { ArrowUpRight, BookOpen, HelpCircle, Globe2 } from "lucide-react"
 import { PROVIDERS } from "@/lib/esim"
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function ContactPage() {
           <p className="mt-5 leading-8 text-[#6c6c6c]">eSIMval säljer inga eSIM-paket. Om du har frågor om betalning, QR-kod, aktivering, täckning eller återbetalning ska du kontakta leverantören där du gjorde köpet.</p>
           <p className="mt-5 text-sm leading-7 text-[#777]">Vi anger inga obekräftade kontaktuppgifter för eSIMval. En egen kontaktkanal för plattformsfrågor läggs till före offentlig lansering.</p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">{PROVIDERS.map(provider=><a key={provider.slug} href={provider.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-[#e5e3de] bg-[#faf9f6] p-4 transition-colors hover:bg-[#eeede8]">
+        <div className="grid gap-3 sm:grid-cols-2">{PROVIDERS.map(provider=><a key={provider.slug} href={`https://${provider.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-[#e5e3de] bg-[#faf9f6] p-4 transition-colors hover:bg-[#eeede8]">
           <span className="flex size-10 items-center justify-center rounded-lg bg-white p-2"><img src={provider.logo || `https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt="" className="size-full object-contain"/></span>
           <span className="flex-1 text-sm font-semibold">{provider.name}</span><ArrowUpRight className="size-4"/>
         </a>)}</div>
