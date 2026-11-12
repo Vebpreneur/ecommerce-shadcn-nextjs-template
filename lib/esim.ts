@@ -7,6 +7,8 @@ export type Provider = {
   slug: string
   name: string
   website: string
+  /** Optional local high-resolution brand asset, e.g. /assets/providers/airalo.png */
+  logo?: string
   affiliateUrl: string
   cover: string
   description: string
