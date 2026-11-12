@@ -6,8 +6,8 @@ import { ArrowUpRight, CheckCircle2, Info, Smartphone, CalendarDays, Database } 
 import type { Provider } from "@/lib/esim"
 import { getVerifiedPlans } from "@/lib/esim-plans"
 
-const DATA_NEEDS = ["Lite surf", "Normal användning", "Mycket surf", "Obegränsat (om tillgängligt)"]
-const DURATION_NEEDS = ["Upp till 7 dagar", "8–15 dagar", "16–30 dagar", "Längre än 30 dagar"]
+const DATA_NEEDS = ["1 GB", "3 GB", "5 GB", "10 GB", "20 GB", "Obegränsat (om tillgängligt)"]
+const DURATION_NEEDS = ["7 dagar", "15 dagar", "30 dagar", "Mer än 30 dagar"]
 
 /**
  * A preference guide, not fabricated package SKUs.
@@ -59,9 +59,9 @@ export function EsimPlanFinder({ provider, destinationSlug }: { provider: Provid
     </div>
     <div className="grid gap-6 p-6 sm:grid-cols-2 sm:p-8">
       <div>
-        <label htmlFor="data-need" className="mb-3 flex items-center gap-2 text-sm font-semibold"><Database className="size-4"/> Dataanvändning</label>
+        <label htmlFor="data-need" className="mb-3 flex items-center gap-2 text-sm font-semibold"><Database className="size-4"/> Önskad datamängd</label>
         <select id="data-need" value={dataNeed} onChange={e=>setDataNeed(e.target.value)} className="h-12 w-full rounded-xl border border-[#dedcd7] bg-[#f9f8f5] px-4 text-sm outline-none focus:border-[#666]">
-          <option value="">Välj dataanvändning</option>{DATA_NEEDS.map(v=><option key={v}>{v}</option>)}
+          <option value="">Välj önskad datamängd</option>{DATA_NEEDS.map(v=><option key={v}>{v}</option>)}
         </select>
       </div>
       <div>
@@ -72,7 +72,7 @@ export function EsimPlanFinder({ provider, destinationSlug }: { provider: Provid
       </div>
     </div>
     <div className="border-t border-[#eceae6] bg-[#f8f7f4] p-6 sm:p-8">
-      {dataNeed&&duration&&<p className="mb-4 flex items-center gap-2 text-sm text-[#555]"><CheckCircle2 className="size-4"/> Dina önskemål: {dataNeed.toLowerCase()}, {duration.toLowerCase()}.</p>}
+      {dataNeed&&duration&&<p className="mb-4 flex items-center gap-2 text-sm text-[#555]"><CheckCircle2 className="size-4"/> Dina önskemål: {dataNeed}, {duration.toLowerCase()}.</p>}
       <a href={provider.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer" className="flex min-h-14 items-center justify-center gap-3 rounded-xl bg-[#181818] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#333]">Se verifierade paket hos {provider.name} <ArrowUpRight className="size-5"/></a>
       <p className="mt-4 text-xs leading-6 text-[#777]">Aktuell datapott, giltighet, täckning, pris och övriga villkor kontrolleras på leverantörens webbplats. Länken kan ge oss provision.</p>
       <Link href="/about" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4"><Smartphone className="size-4"/> Så installerar du eSIM</Link>
