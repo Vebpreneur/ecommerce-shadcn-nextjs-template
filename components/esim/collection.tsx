@@ -3,11 +3,12 @@
 import { useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowUpRight, ArrowDown, Globe2, Search, Smartphone, ShieldCheck } from "lucide-react"
+import { ArrowUpRight, Globe2, Search, Smartphone, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DESTINATIONS, PROVIDERS, type Provider } from "@/lib/esim"
 import { EsimRippleHero } from "@/components/esim/ripple-hero"
 import { ProviderLogo } from "@/components/esim/provider-logo"
+import { LargeHeroSearch, PrintifyPrimaryLink, PrintifySecondaryButton } from "@/components/esim/printify-controls"
 
 type CollectionProps = { provider?: Provider }
 
@@ -25,9 +26,9 @@ function MovingArrow({ label, inverse = false }: { label: string; inverse?: bool
 function CollectionHero({ provider, query, onQueryChange, onBrowse }: CollectionProps & { query: string; onQueryChange: (value: string) => void; onBrowse: () => void }) {
   return (
     <>
-      <section className="relative flex min-h-[500px] items-center justify-center overflow-hidden pt-12 md:min-h-[540px]">
+      <section className="relative flex min-h-[540px] items-center justify-center overflow-hidden pt-10 md:min-h-[610px]">
         <EsimRippleHero />
-        <div className="relative z-10 mx-auto max-w-5xl px-4 pb-14 pt-5 text-center text-white">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-16 pt-4 text-center text-white">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}>
             {provider && (
               <div className="mb-5 flex justify-center">
@@ -44,25 +45,14 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
               {provider ? provider.description : "Utforska våra eSIM-leverantörer. Välj en butik och hitta din nästa destination."}
             </p>
 
-            <div className="mx-auto mt-7 max-w-2xl">
-              <label className="flex min-h-14 items-center gap-3 rounded-2xl border border-white/35 bg-white px-4 py-2 text-[#171717] shadow-[0_16px_60px_rgba(0,0,0,.22)] focus-within:ring-2 focus-within:ring-white/60">
-                <Search className="size-5 shrink-0 text-[#777]" aria-hidden="true" />
-                <span className="sr-only">{provider ? "Sök destination" : "Sök leverantör"}</span>
-                <input type="search" value={query} onChange={event => onQueryChange(event.target.value)}
-                  placeholder={provider ? "Sök land eller region…" : "Sök bland leverantörer…"}
-                  className="min-w-0 flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-[#888] sm:text-base" />
-                <button type="button" onClick={onBrowse} className="shrink-0 rounded-xl bg-[#181818] px-5 py-3 text-sm font-semibold text-white hover:bg-[#393939]">Sök</button>
-              </label>
+            <div className="mx-auto mt-9 w-full max-w-[1050px]">
+              <LargeHeroSearch value={query} onChange={onQueryChange} onSearch={onBrowse}
+                label={provider ? "Sök leverantörens destinationer" : "Sök leverantörer"}
+                placeholder={provider ? "Sök bland länder och regioner…" : "Sök bland alla leverantörer…"} />
             </div>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-              {provider && (
-                <a href={provider.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer" className="group inline-flex h-12 items-center gap-3 rounded-xl bg-white px-5 text-sm font-semibold text-[#161616] transition-colors hover:bg-[#eaeaea]">
-                  Besök {provider.name} <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </a>
-              )}
-              <button type="button" onClick={onBrowse} className="inline-flex h-12 items-center gap-3 rounded-xl border border-white/35 bg-white/10 px-5 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/20">
-                {provider ? "Utforska destinationer" : "Utforska leverantörer"} <ArrowDown className="size-4" />
-              </button>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              {provider && <PrintifyPrimaryLink href={provider.affiliateUrl} external>Besök officiell webbplats</PrintifyPrimaryLink>}
+              <PrintifySecondaryButton onClick={onBrowse}>{provider ? "Utforska destinationer" : "Utforska leverantörer"}</PrintifySecondaryButton>
             </div>
             {provider && <p className="mt-3 text-xs text-white/60">Extern affiliatelänk. Vi kan få provision.</p>}
           </motion.div>
