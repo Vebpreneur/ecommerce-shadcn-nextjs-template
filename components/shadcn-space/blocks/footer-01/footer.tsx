@@ -225,10 +225,10 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="mailto:hello@esimval.se"
+                      href="/contact"
                       className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      hello@novastore.com
+                      Kontakta eSIMval
                     </a>
                   </li>
                   <li>
