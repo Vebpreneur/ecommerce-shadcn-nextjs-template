@@ -158,10 +158,7 @@ const Footer = () => {
                 </Link>
 
                 <p className="max-w-sm text-lg leading-relaxed font-light text-muted-foreground">
-                  Redefining{" "}
-                  <span className={cn("text-foreground")}>modern luxury</span>{" "}
-                  through curated essentials that prioritize quality,
-                  sustainability, and timeless design.
+                  Utforska eSIM-leverantörer och destinationer. Välj ditt resmål och ta del av aktuella erbjudanden direkt hos leverantören.
                 </p>
 
                 {/* social links */}
@@ -228,7 +225,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="mailto:hello@novastore.com"
+                      href="mailto:hello@esimval.se"
                       className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                     >
                       hello@novastore.com
@@ -249,7 +246,7 @@ const Footer = () => {
 
           <div className="flex animate-in flex-col items-center justify-between gap-6 border-t border-border/50 pt-12 delay-500 duration-1000 ease-in-out fill-mode-both fade-in slide-in-from-bottom-8 sm:flex-row">
             <p className="text-sm font-medium text-muted-foreground">
-              ©2026 Nova Store. Crafted for the intentional life.
+              © 2026 eSIMval. Utforska eSIM-leverantörer och destinationer.
             </p>
             <div className="flex items-center gap-8">
               <Link
