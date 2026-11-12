@@ -104,8 +104,8 @@ const footerSections: FooterData[] = [
     { title: "Artiklar", href: "/artiklar" },
   ]},
   { title: "Information", links: [
-    { title: "Om eSIMval", href: "/contact" },
-    { title: "Vanliga frågor", href: "/about" },
+    { title: "Så fungerar eSIM", href: "/about" },
+    { title: "Vanliga frågor", href: "/faq" },
     { title: "Kontakta oss", href: "/contact" },
   ]},
 ]
