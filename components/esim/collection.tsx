@@ -87,7 +87,7 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
 }
 
 
-function StoreCard({ provider }: { provider: Provider }) {
+export function StoreCard({ provider }: { provider: Provider }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7e6e3] bg-white shadow-[0_4px_20px_rgba(20,20,20,.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cbc9c5] hover:shadow-[0_20px_50px_rgba(20,20,20,.11)]">
       <Link href={`/providers/${provider.slug}`} aria-label={`Visa ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-[#eaeae7]">
@@ -106,7 +106,7 @@ function StoreCard({ provider }: { provider: Provider }) {
   )
 }
 
-function DestinationCard({ provider, destination }: { provider: Provider; destination: typeof DESTINATIONS[number] }) {
+export function DestinationCard({ provider, destination }: { provider: Provider; destination: typeof DESTINATIONS[number] }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7e6e3] bg-white shadow-[0_4px_20px_rgba(20,20,20,.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cbc9c5] hover:shadow-[0_20px_50px_rgba(20,20,20,.11)]">
       <Link href={`/providers/${provider.slug}/${destination.slug}`} aria-label={`Visa ${destination.name} hos ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-[#eaeae7]">
