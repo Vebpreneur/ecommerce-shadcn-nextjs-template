@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "motion/react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const MESSAGES = [
-  "Free global shipping on orders over $150",
-  "New Autumn Collection out now • Limited Edition",
-  "Sign up for Nova Circle & get 10% off your first order",
+  "Upptäck eSIM för din nästa resa",
+  "Utforska leverantörer och destinationer",
+  "Aktuella priser och villkor finns hos leverantörerna",
 ]
 
 export function AnnouncementBar() {
