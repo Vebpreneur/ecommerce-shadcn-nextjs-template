@@ -108,7 +108,7 @@ export default function ShopPage() {
           }
           description={
             activeCategory === "All"
-              ? "Browse Nova Store's full collection of premium apparel, luxury accessories, and smart tech."
+              ? "Utforska urvalet på eSIMval."
               : `Exploring our premium selection of ${activeCategory.toLowerCase()} products.`
           }
         />
@@ -186,7 +186,7 @@ export default function ShopPage() {
         <div className="relative z-10 mx-auto max-w-4xl space-y-12 text-center">
           <div className="space-y-4">
             <h2 className="animate-in text-4xl font-medium tracking-tight duration-1000 fade-in slide-in-from-bottom-8 md:text-6xl">
-              Join the <span className={instrumentSerif.className}>Nova</span>{" "}
+              Join the <span className={instrumentSerif.className}>eSIMval</span>{" "}
               Circle
             </h2>
             <p className="mx-auto max-w-xl animate-in text-lg opacity-70 delay-200 duration-1000 fade-in slide-in-from-bottom-8">
