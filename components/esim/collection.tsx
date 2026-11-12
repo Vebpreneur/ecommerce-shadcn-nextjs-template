@@ -3,14 +3,14 @@
 import { useMemo, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowRight, ArrowUpRight, Globe2, Search, Smartphone, ShieldCheck } from "lucide-react"
+import { ArrowUpRight, Globe2, Search, Smartphone, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DESTINATIONS, PROVIDERS, type Provider } from "@/lib/esim"
+import { EsimRippleHero } from "@/components/esim/ripple-hero"
+import { ProviderLogo } from "@/components/esim/provider-logo"
 
 type CollectionProps = { provider?: Provider }
-
-const directoryCover = "https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1800&q=85"
 
 function MovingArrow({ label }: { label: string }) {
   return (
@@ -26,14 +26,15 @@ function MovingArrow({ label }: { label: string }) {
 function CollectionHero({ provider }: CollectionProps) {
   return (
     <>
-      <section className="relative flex min-h-[310px] items-center justify-center overflow-hidden pt-20 md:h-[40vh]">
-        <img
-          src={provider?.cover ?? directoryCover}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover brightness-[.52]"
-        />
+      <section className="relative flex min-h-[350px] items-center justify-center overflow-hidden pt-20 md:min-h-[420px]">
+        <EsimRippleHero />
         <div className="relative z-10 mx-auto max-w-5xl px-4 py-16 text-center text-white">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}>
+            {provider && (
+              <div className="mb-5 flex justify-center">
+                <ProviderLogo provider={provider} size="hero" />
+              </div>
+            )}
             <p className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-white/75">
               {provider ? "eSIM / LEVERANTÖR" : "UPPTÄCK / LEVERANTÖRER"}
             </p>
@@ -69,9 +70,7 @@ function StoreCard({ provider }: { provider: Provider }) {
     <Card className="group flex h-full flex-col gap-0 overflow-hidden rounded-2xl border bg-card p-0 ring-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10">
       <Link href={`/providers/${provider.slug}`} aria-label={`Visa ${provider.name}`} className="relative block aspect-[4/3] overflow-hidden bg-muted">
         <img src={provider.cover} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        <span className="absolute bottom-4 left-4 flex size-12 items-center justify-center overflow-hidden rounded-xl border border-white/70 bg-white p-2 shadow-lg">
-          <img src={`https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt="" loading="lazy" className="size-full object-contain" />
-        </span>
+        <ProviderLogo provider={provider} className="absolute bottom-4 left-4" />
       </Link>
       <CardContent className="flex flex-1 flex-col gap-3 p-5">
         <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">eSIM-leverantör</span>
@@ -91,9 +90,7 @@ function DestinationCard({ provider, destination }: { provider: Provider; destin
       <Link href={`/providers/${provider.slug}/${destination.slug}`} className="relative block aspect-[4/3] overflow-hidden bg-muted" aria-label={`Visa ${destination.name} hos ${provider.name}`}>
         <img src={destination.image} alt={destination.name} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
         <span className="absolute left-4 top-4 rounded-full border border-white/60 bg-white/95 px-3 py-1 text-xs font-medium text-black shadow-sm">{destination.kind}</span>
-        <span className="absolute bottom-4 left-4 flex size-12 items-center justify-center overflow-hidden rounded-xl border border-white/70 bg-white p-2 shadow-lg" title={provider.name}>
-          <img src={`https://www.google.com/s2/favicons?domain=${provider.website}&sz=128`} alt={`${provider.name} logotyp`} loading="lazy" className="size-full object-contain" />
-        </span>
+        <ProviderLogo provider={provider} className="absolute bottom-4 left-4" />
       </Link>
       <CardContent className="flex flex-1 flex-col gap-3 p-5">
         <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{provider.name}</span>
