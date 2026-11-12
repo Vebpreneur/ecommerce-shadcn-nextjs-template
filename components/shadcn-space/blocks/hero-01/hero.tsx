@@ -46,7 +46,7 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                   transition={{ duration: 1, delay: 0.1, ease: "easeInOut" }}
                   className="max-w-2xl text-base font-normal text-muted-foreground"
                 >
-                  Discover Nova Store's exclusive collection of high-quality
+                  Discover eSIMval's exclusive collection of high-quality
                   apparel, luxury accessories, and smart tech. Enjoy free global
                   shipping and elevate your everyday look with the best
                   lifestyle products online.
