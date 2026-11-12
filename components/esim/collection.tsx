@@ -3,12 +3,13 @@
 import { useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowUpRight, Globe2, Search, Smartphone, ShieldCheck } from "lucide-react"
+import { ArrowUpRight, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DESTINATIONS, PROVIDERS, type Provider } from "@/lib/esim"
 import { EsimRippleHero } from "@/components/esim/ripple-hero"
 import { ProviderLogo } from "@/components/esim/provider-logo"
-import { LargeHeroSearch, PrintifyPrimaryLink, PrintifySecondaryButton } from "@/components/esim/printify-controls"
+import { LargeHeroSearch, PrintifyPrimaryLink } from "@/components/esim/printify-controls"
+import { ProviderMarquee } from "@/components/esim/provider-marquee"
 
 type CollectionProps = { provider?: Provider }
 
@@ -52,26 +53,13 @@ function CollectionHero({ provider, query, onQueryChange, onBrowse }: Collection
             </div>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               {provider && <PrintifyPrimaryLink href={provider.affiliateUrl} external>Besök officiell webbplats</PrintifyPrimaryLink>}
-              <PrintifySecondaryButton onClick={onBrowse}>{provider ? "Utforska destinationer" : "Utforska leverantörer"}</PrintifySecondaryButton>
+
             </div>
             {provider && <p className="mt-3 text-xs text-white/60">Extern affiliatelänk. Vi kan få provision.</p>}
           </motion.div>
         </div>
       </section>
-      <section className="border-y border-white/10 bg-[#111214] text-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-7 md:grid-cols-3">
-          {[
-            { Icon: Globe2, text: "Länder, regioner och globala destinationer" },
-            { Icon: Smartphone, text: "Upptäck digitala eSIM-alternativ" },
-            { Icon: ShieldCheck, text: "Se aktuella villkor hos leverantören" },
-          ].map(({ Icon, text }) => (
-            <div key={text} className="flex items-center justify-center gap-3">
-              <Icon className="size-5 shrink-0 text-white/75" aria-hidden="true" />
-              <p className="text-center text-sm font-medium text-white/80">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ProviderMarquee />
     </>
   )
 }
