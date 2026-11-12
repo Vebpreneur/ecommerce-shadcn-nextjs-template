@@ -10,8 +10,8 @@ import Newsletter from "@/components/shadcn-space/blocks/newsletter-01/newslette
 import { PRODUCTS } from "@/lib/data"
 
 export const metadata: Metadata = {
-  title: "Nova Store | Home",
-  description: "Welcome to Nova Store. Find the latest trends in fashion and electronics with free shipping worldwide.",
+  title: "eSIMval | Startsida",
+  description: "Utforska eSIM-leverantörer och destinationer på eSIMval.",
 }
 
 export default function Page() {
