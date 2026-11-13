@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { AlertCircle, Database, RefreshCw, SlidersHorizontal, Search } from "lucide-react"
+import { AlertCircle, Database, RefreshCw, SlidersHorizontal } from "lucide-react"
 import { LIVE_DESTINATIONS, getLiveDestination } from "@/lib/esim-live/destinations"
 import type { LivePlan } from "@/lib/esim-live/sources"
 import { PlanCard } from "@/components/esim/plan-card"
