@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "esimadvice": {
+      "type": "http",
+      "url": "https://esimadvice.com/mcp"
+    },
+    "esimdata": {
+      "type": "http",
+      "url": "https://esimdata.app/mcp"
+    }
+  }
+}
