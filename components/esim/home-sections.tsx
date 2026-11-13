@@ -16,7 +16,7 @@ export function HomeCategories() {
       </div>
       <div className="mt-10 grid gap-4 md:grid-cols-6">
         {highlights.map((place,i)=><Link key={place.slug} href={`/providers/airalo/${place.slug}`}
-          className={`group relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#242424] p-6 text-white md:min-h-[330px] ${i<2?"md:col-span-3":"md:col-span-2"}`}>
+          className={`esim-image-tile group relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#242424] p-6 text-white md:min-h-[330px] ${i<2?"md:col-span-3":"md:col-span-2"}`}>
           <img src={place.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"/>
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"/>
           <div className="relative flex items-end justify-between gap-4"><div>
