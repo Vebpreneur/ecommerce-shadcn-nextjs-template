@@ -17,16 +17,16 @@ const STEPS = [
 ]
 
 export default function AboutPage(){
-  return <main className="bg-[#f9f8f5] text-[#181818]">
-    <section className="relative overflow-hidden bg-[#111214] px-4 pb-24 pt-28 text-white">
-      <div className="pointer-events-none absolute inset-0 opacity-20" style={{backgroundImage:"linear-gradient(#ffffff28 1px, transparent 1px),linear-gradient(90deg,#ffffff28 1px,transparent 1px)",backgroundSize:"60px 60px"}}/>
+  return <main className="esim-page">
+    <section className="esim-hero relative overflow-hidden px-4 pb-20 pt-28">
+      <div className="pointer-events-none absolute inset-0 opacity-40" style={{backgroundImage:"linear-gradient(#b5c0ba44 1px, transparent 1px),linear-gradient(90deg,#b5c0ba44 1px,transparent 1px)",backgroundSize:"64px 64px"}}/>
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 sm:px-6 lg:grid-cols-2 lg:px-16">
-        <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-white/55">GUIDE / ESIM</p>
+        <div><p className="esim-eyebrow">GUIDE / ESIM</p>
           <h1 className="mt-6 text-5xl font-semibold leading-[1.08] tracking-[-.055em] sm:text-6xl">Uppkopplad på resan. Utan fysiskt SIM-kort.</h1>
-          <p className="mt-6 max-w-xl text-base leading-8 text-white/70">En visuell introduktion till hur eSIM fungerar, hur du installerar en digital mobilprofil och vad du behöver kontrollera före avresan.</p>
-          <Link href="/providers" className="mt-8 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-4 text-sm font-semibold text-[#171717]">Utforska leverantörer <ArrowUpRight className="size-4"/></Link>
+          <p className="esim-hero-copy mt-6 max-w-xl text-base leading-8">En visuell introduktion till hur eSIM fungerar, hur du installerar en digital mobilprofil och vad du behöver kontrollera före avresan.</p>
+          <Link href="/providers" className="esim-button mt-8">Utforska leverantörer <ArrowUpRight className="size-4"/></Link>
         </div>
-        <div className="relative mx-auto flex w-full max-w-sm items-center justify-center rounded-[38px] border border-white/15 bg-white/5 p-10 shadow-2xl">
+        <div className="relative mx-auto flex w-full max-w-sm items-center justify-center rounded-[24px] border border-[#dfe5df] bg-white/70 p-8 shadow-[0_18px_50px_rgba(20,30,25,.08)]">
           <div className="relative w-60 overflow-hidden rounded-[36px] border-[8px] border-[#343434] bg-[#faf9f7] p-5 shadow-2xl">
             <div className="mx-auto mb-10 h-2 w-20 rounded-full bg-[#333]"/>
             <div className="rounded-2xl border border-[#e9e7e1] bg-white p-5 text-[#171717]">
@@ -39,41 +39,41 @@ export default function AboutPage(){
             <div className="mt-3 h-3 w-3/4 rounded-full bg-[#e8e8e8]"/>
             <div className="my-8 h-2 rounded-full bg-[#d6d6d6]"/>
           </div>
-          <span className="absolute bottom-10 right-0 flex items-center gap-2 rounded-xl border border-white/15 bg-[#2c3034] px-4 py-3 text-xs text-white shadow-xl"><ScanLine className="size-5"/> Illustration – ingen aktiv QR-kod</span>
+          <span className="absolute bottom-8 right-0 flex items-center gap-2 rounded-xl border border-[#dde3dd] bg-white px-4 py-3 text-xs text-[#626a6c] shadow-sm"><ScanLine className="size-5"/> Illustration – ingen aktiv QR-kod</span>
         </div>
       </div>
     </section>
 
-    <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-16">
+    <section className="esim-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
       <div className="grid items-start gap-12 lg:grid-cols-[.7fr_1.3fr]">
-        <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">FRÅN VAL TILL UPPKOPPLING</p>
+        <div><p className="esim-eyebrow">FRÅN VAL TILL UPPKOPPLING</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">Fyra steg till ditt eSIM.</h2>
-          <p className="mt-5 leading-8 text-[#777]">Stegen är generella. Menynamn och installationsförfarande varierar mellan olika telefoner och leverantörer.</p></div>
-        <div className="grid gap-4 sm:grid-cols-2">{STEPS.map(step=><div key={step.number} className="rounded-[22px] border border-[#e5e3dc] bg-white p-7 shadow-sm">
+          <p className="esim-text-muted mt-5 leading-8">Stegen är generella. Menynamn och installationsförfarande varierar mellan olika telefoner och leverantörer.</p></div>
+        <div className="grid gap-4 sm:grid-cols-2">{STEPS.map(step=><div key={step.number} className="esim-card p-7">
           <div className="flex items-start justify-between"><span className="text-xs font-semibold text-[#999]">{step.number}</span><step.Icon className="size-7 text-[#333]" strokeWidth={1.5}/></div>
           <h3 className="mt-9 text-xl font-semibold tracking-tight">{step.title}</h3>
-          <p className="mt-3 text-sm leading-7 text-[#777]">{step.copy}</p>
+          <p className="esim-text-muted mt-3 text-sm leading-7">{step.copy}</p>
         </div>)}</div>
       </div>
     </section>
 
-    <section className="border-y border-[#e5e3dd] bg-white px-4 py-24 sm:px-6">
+    <section className="esim-section alt border-y border-[#e5e8e5] px-4 sm:px-6">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:px-16">
         <div className="overflow-hidden rounded-[26px]"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9?auto=format&fit=crop&w=1300&q=85" alt="Mobiltelefon i handen" className="aspect-[1.25] w-full object-cover"/></div>
-        <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">INSTALLATION & AKTIVERING</p>
+        <div><p className="esim-eyebrow">INSTALLATION & AKTIVERING</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-.045em]">QR-kod eller manuell installation?</h2>
-          <p className="mt-6 leading-8 text-[#6d6d6d]">De flesta leverantörer erbjuder instruktioner för att lägga till en eSIM-profil. Ofta används en QR-kod, men vissa använder också en aktiveringskod eller en app.</p>
+          <p className="esim-text-muted mt-6 leading-8">De flesta leverantörer erbjuder instruktioner för att lägga till en eSIM-profil. Ofta används en QR-kod, men vissa använder också en aktiveringskod eller en app.</p>
           <div className="mt-8 space-y-5">{[
             ["Använd stabilt internet","Du behöver normalt internet för att hämta eSIM-profilen."],
             ["Skanna leverantörens kod","QR-koden är personlig och tillhandahålls vid köp. Illustrationen ovan är ingen aktiveringskod."],
             ["Kontrollera startvillkoren","Giltighetstiden kan börja vid installation, aktivering eller första nätverksanslutning."],
-          ].map(([title,copy])=><div key={title} className="flex items-start gap-3"><span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-[#181818] text-white"><Check className="size-4"/></span><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-7 text-[#777]">{copy}</p></div></div>)}</div>
+          ].map(([title,copy])=><div key={title} className="flex items-start gap-3"><span className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-[#181818] text-white"><Check className="size-4"/></span><div><h3 className="font-semibold">{title}</h3><p className="esim-text-muted mt-1 text-sm leading-7">{copy}</p></div></div>)}</div>
         </div>
       </div>
     </section>
 
-    <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-16">
-      <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">BRA ATT VETA</p><h2 className="mt-4 text-4xl font-semibold">Vanliga frågor</h2>
+    <section className="esim-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
+      <p className="esim-eyebrow">BRA ATT VETA</p><h2 className="mt-4 text-4xl font-semibold">Vanliga frågor</h2>
       <div className="mt-9 grid gap-3 lg:grid-cols-2">{[
         ["Behöver jag ta ut mitt vanliga SIM-kort?","Inte nödvändigtvis. Många kompatibla telefoner kan ha flera SIM-profiler, men vilka som kan vara aktiva samtidigt beror på enheten."],
         ["Fungerar eSIM på alla telefoner?","Nej. Kontrollera modellens exakta eSIM-stöd och eventuella operatörslåsningar."],
