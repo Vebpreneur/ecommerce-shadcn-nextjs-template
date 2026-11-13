@@ -52,6 +52,32 @@ export function HomeEditorial() {
   </section>
 }
 
+export function HomeCompare() {
+ return <section className="esim-section alt px-4 sm:px-6">
+  <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:px-16">
+    <div>
+      <p className="esim-eyebrow">ESIMVAL / JÄMFÖRELSE</p>
+      <h2 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">Jämför innan du bestämmer dig.</h2>
+      <p className="esim-text-muted mt-6 max-w-lg leading-8">Välj flera eSIM-leverantörer sida vid sida. Kontrollera deras erbjudanden, och se priser och datamängder när verifierade paket finns anslutna.</p>
+      <Link href="/jamfor" className="esim-button mt-8">Öppna jämförelsen <ArrowUpRight className="size-4"/></Link>
+    </div>
+    <div className="esim-editorial p-6 sm:p-8">
+      <p className="esim-eyebrow">VAD SKA DU JÄMFÖRA?</p>
+      {[
+        ["Datamängd", "GB och eventuella användningsgränser"],
+        ["Giltighet", "När paketet börjar och slutar gälla"],
+        ["Täckning", "Nätverk och länder i paketet"],
+        ["Kostnad", "Verifierat pris och valuta"]
+      ].map(([title,description],i)=><div key={title} className="flex items-start gap-5 border-b border-[#e1e6e0] py-5 last:border-0">
+        <span className="mt-1 text-sm font-semibold text-[#84918a]">0{i+1}</span>
+        <div className="flex-1"><h3 className="text-base font-semibold">{title}</h3><p className="esim-text-muted mt-1 text-sm leading-6">{description}</p></div>
+        <ArrowUpRight className="size-4 text-[#85918a]"/>
+      </div>)}
+    </div>
+  </div>
+ </section>
+}
+
 export function HomeKnowledge() {
   return <section className="esim-section px-4 sm:px-6">
     <div className="mx-auto max-w-7xl lg:px-16">
@@ -61,7 +87,7 @@ export function HomeKnowledge() {
           <p className="esim-text-muted mt-4 max-w-xl text-sm leading-7">Läs om digitala SIM-kort, installation och hur du förbereder dig.</p></div>
         <Link href="/artiklar" className="inline-flex items-center gap-2 text-sm font-semibold hover:underline">Alla artiklar <ArrowRight className="size-4"/></Link>
       </div>
-      <div className="mt-10 grid gap-6 md:grid-cols-2">{ARTICLES.map(article=><ArticleCard key={article.slug} article={article}/>)}</div>
+      <div className="mt-10 grid gap-6 md:grid-cols-3">{ARTICLES.slice(0,3).map(article=><ArticleCard key={article.slug} article={article}/>)}</div>
     </div>
   </section>
 }
