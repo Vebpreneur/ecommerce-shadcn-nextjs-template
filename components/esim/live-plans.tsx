@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import { AlertCircle, Database, RefreshCw, SlidersHorizontal } from "lucide-react"
 import { LIVE_DESTINATIONS, getLiveDestination } from "@/lib/esim-live/destinations"
 import type { LivePlan } from "@/lib/esim-live/sources"
-import { PlanCard } from "@/components/esim/plan-card"
+import { PlanCard, PlanCardSkeleton } from "@/components/esim/plan-card"
 
 type Payload={
  ok:boolean
@@ -140,8 +140,9 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
     <h3 className="text-xl font-semibold">Inga paket i detta urval</h3>
     <p className="esim-text-muted mt-3 text-sm">Prova att ändra land, källa eller filter. Vi visar inte några påhittade priser.</p>
    </div>}
-   {loading&&<p className="esim-text-muted py-8 text-center text-sm" role="status">Hämtar paket från datakällorna…</p>}
-   <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
+   {loading&&<p className="sr-only" role="status">Hämtar paket från datakällorna…</p>}
+   <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3" aria-busy={loading}>
+     {loading&&Array.from({length:6},(_,i)=><PlanCardSkeleton key={i}/>)}
      {!loading&&plans.slice(0,visibleCount).map(plan=><PlanCard key={plan.id} plan={plan} destination={data?.destination||country}/>)}
    </div>
    {!loading&&plans.length>visibleCount&&<div className="flex flex-col items-center gap-3 pt-4">
