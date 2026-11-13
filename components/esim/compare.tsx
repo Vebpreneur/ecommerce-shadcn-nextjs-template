@@ -9,12 +9,11 @@ import { LivePlansExplorer } from "@/components/esim/live-plans"
 
 type Mode = "leverantorer" | "paket"
 const detailRows: { label: string; value: (p: Provider) => string }[] = [
-  { label: "Webbplats", value: p => p.website },
   { label: "Leverantör", value: p => p.name },
-  { label: "Beskrivning", value: p => p.description },
-  { label: "Aktuella paket", value: () => "Kontrollera hos leverantören" },
-  { label: "Priser & giltighet", value: () => "Ej synkroniserade ännu" },
-  { label: "Köp och kundservice", value: () => "Hos leverantören" },
+  { label: "Webbplats", value: p => p.website },
+  { label: "Inriktning", value: p => p.description },
+  { label: "Paket och priser", value: () => "Se paketfliken eller aktuell information hos leverantören" },
+  { label: "Beställning och support", value: () => "Direkt hos respektive leverantör" },
 ]
 
 export default function EsimCompare() {
@@ -34,7 +33,7 @@ export default function EsimCompare() {
       <div className="esim-container">
         <p className="esim-eyebrow">ESIMVAL / JÄMFÖRELSE</p>
         <h1 className="mx-auto mt-5 max-w-3xl text-5xl font-semibold tracking-tight md:text-6xl">Jämför eSIM och leverantörer.</h1>
-        <p className="esim-hero-copy mx-auto mt-5 max-w-2xl text-base leading-8">Jämför flera leverantörer sida vid sida. När verifierade paketpriser finns tillgängliga kan du också jämföra datamängd, giltighetstid och pris.</p>
+        <p className="esim-hero-copy mx-auto mt-5 max-w-2xl text-base leading-8">Jämför flera leverantörer sida vid sida. Använd paketfliken för att se jämförbar surf, giltighet och prisinformation från externa datakällor.</p>
       </div>
     </section>
     <section className="esim-section">
@@ -49,7 +48,7 @@ export default function EsimCompare() {
           <div className="esim-editorial p-6 sm:p-9">
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
               <div><h2 className="text-2xl font-semibold">Välj upp till fyra leverantörer</h2>
-              <p className="esim-text-muted mt-2 text-sm leading-7">Vi visar bara verifierbar kataloginformation, inte påhittade priser, täckningskartor eller kvalitetsbetyg.</p></div>
+              <p className="esim-text-muted mt-2 text-sm leading-7">Välj leverantörer att undersöka. För jämförelser av datapaket använder du paketfliken med källmärkta erbjudanden.</p></div>
               <label className="block"><span className="sr-only">Sök leverantör</span><input className="esim-field h-12 w-full px-4 sm:w-56" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Sök leverantör..." /></label>
             </div>
             <div className="mt-6 flex flex-wrap gap-2">{availableProviders.map(p => {
