@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react"
 import { EsimRippleHero } from "@/components/esim/ripple-hero"
 import { LargeHeroSearch } from "@/components/esim/printify-controls"
 import { ProviderMarquee } from "@/components/esim/provider-marquee"
+import { PhoneCheck } from "@/components/esim/phone-check"
 import { HomeCategories, HomeEditorial, HomeCompare, HomeKnowledge, HomeFAQ } from "@/components/esim/home-sections"
 import { StoreCard, DestinationCard } from "@/components/esim/collection"
 import { PROVIDERS, DESTINATIONS } from "@/lib/esim"
@@ -84,6 +85,7 @@ export default function EsimHome() {
 
       <HomeCategories />
       <HomeEditorial />
+      <PhoneCheck />
       <HomeCompare />
       <HomeKnowledge />
       <HomeFAQ />
