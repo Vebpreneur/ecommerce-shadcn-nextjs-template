@@ -139,6 +139,7 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
    {!error&&!loading&&plans.length===0&&<div className="esim-card p-9 text-center">
     <h3 className="text-xl font-semibold">Inga paket i detta urval</h3>
     <p className="esim-text-muted mt-3 text-sm">Prova att ändra land, källa eller filter. Vi visar inte några påhittade priser.</p>
+    <button type="button" className="esim-button esim-button-secondary mt-5" onClick={()=>{setMinGb(0);setMinDays(0);setProvider("all");setCurrency("all");setSource("all")}}>Rensa filter</button>
    </div>}
    {loading&&<p className="sr-only" role="status">Hämtar paket från datakällorna…</p>}
    <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3" aria-busy={loading}>
