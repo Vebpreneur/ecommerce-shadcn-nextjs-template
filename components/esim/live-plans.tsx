@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import { AlertCircle, Database, RefreshCw, SlidersHorizontal } from "lucide-react"
+import { AlertCircle, Database, RefreshCw, SlidersHorizontal, Search } from "lucide-react"
 import { LIVE_DESTINATIONS } from "@/lib/esim-live/destinations"
 import type { LivePlan } from "@/lib/esim-live/sources"
 import { PlanCard } from "@/components/esim/plan-card"
@@ -25,13 +25,15 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
  const [source,setSource]=useState<"all"|"esimadvice"|"esimdata">("all")
  const [minGb,setMinGb]=useState(0)
  const [minDays,setMinDays]=useState(0)
+ const [provider,setProvider]=useState("all")
+ const [currency,setCurrency]=useState("all")
  const [sort,setSort]=useState<"price"|"data"|"validity">("price")
  const [refresh,setRefresh]=useState(0)
 
  useEffect(()=>{
   const controller=new AbortController()
   const fetchPlans=async()=>{
-   setLoading(true);setError("")
+   setLoading(true);setError("");setData(null);setProvider("all");setCurrency("all")
    try{
     const response=await fetch(`/api/esim/live?country=${encodeURIComponent(country)}&source=${source}&limit=40`,{signal:controller.signal})
     const payload=await response.json() as Payload
@@ -44,17 +46,21 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
   void fetchPlans()
   return ()=>controller.abort()
  },[country,source,refresh])
+ const providers=useMemo(()=>Array.from(new Set((data?.items||[]).map(p=>p.provider))).sort((a,b)=>a.localeCompare(b,"sv")),[data])
+ const currencies=useMemo(()=>Array.from(new Set((data?.items||[]).map(p=>p.currency))).sort(),[data])
  const plans=useMemo(()=>{
   const filtered=(data?.items||[]).filter(p=>
     (p.unlimited||minGb===0||(p.dataGb!==null&&p.dataGb>=minGb))&&
-    (minDays===0||(p.days!==null&&p.days>=minDays))
+    (minDays===0||(p.days!==null&&p.days>=minDays))&&
+    (provider==="all"||p.provider===provider)&&
+    (currency==="all"||p.currency===currency)
   )
   return filtered.sort((a,b)=>{
    if(sort==="data")return (b.unlimited?1e6:b.dataGb??-1)-(a.unlimited?1e6:a.dataGb??-1)
    if(sort==="validity")return (b.days??-1)-(a.days??-1)
    return a.currency===b.currency ?a.price-b.price : a.currency.localeCompare(b.currency)
   })
- },[data,minGb,minDays,sort])
+ },[data,minGb,minDays,sort,provider,currency])
  return <section className={compact?"space-y-6":"esim-section"}>
   <div className={compact?"space-y-6":"esim-container space-y-6"}>
    {!compact&&<div className="flex flex-wrap items-end justify-between gap-4">
@@ -82,10 +88,24 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
        <option value="0">Alla</option><option value="7">7 dagar+</option><option value="15">15 dagar+</option><option value="30">30 dagar+</option>
       </select></label>
     </div>
+    <div className="mt-4 grid gap-4 border-t border-[#e5e8e5] pt-4 sm:grid-cols-2">
+      <label className="block"><span className="mb-2 block text-xs font-semibold">Leverantör</span>
+        <select value={provider} onChange={e=>setProvider(e.target.value)} className="esim-field h-12 w-full px-3 text-sm">
+          <option value="all">Alla leverantörer</option>
+          {providers.map(name=><option key={name} value={name}>{name}</option>)}
+        </select>
+      </label>
+      <label className="block"><span className="mb-2 block text-xs font-semibold">Valuta</span>
+        <select value={currency} onChange={e=>setCurrency(e.target.value)} className="esim-field h-12 w-full px-3 text-sm">
+          <option value="all">Alla valutor</option>
+          {currencies.map(value=><option key={value} value={value}>{value}</option>)}
+        </select>
+      </label>
+    </div>
     <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-[#e5e8e5] pt-5">
      <div className="flex items-center gap-2 text-sm">
       <Database className="size-4 text-[#6c7772]"/>
-      {loading?"Hämtar erbjudanden…":`${plans.length} paket i detta urval`}
+      {loading?"Hämtar erbjudanden…":`${plans.length} paket matchar dina filter`}
      </div>
      <div className="flex items-center gap-3">
       <label className="flex items-center gap-2 text-xs">Sortera
@@ -101,6 +121,7 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
       {s.source==="esimadvice"?"eSIM Advice":"esimdata.app"}: {s.ok?`${s.count} poster`:"otillgänglig"}
     </span>)}
    </div>}
+   {currencies.length>1 && currency==="all" && <p className="esim-text-muted text-xs leading-6">Paket i olika valutor grupperas vid prissortering. Välj en valuta för att jämföra prisnivåer rättvist.</p>}
    {error&&<div role="alert" className="esim-card flex items-start gap-3 p-6"><AlertCircle className="mt-1 size-5 shrink-0"/><p className="esim-text-muted text-sm">{error}. Försök igen senare. Leverantörskatalogen är fortfarande tillgänglig.</p></div>}
    {!error&&!loading&&plans.length===0&&<div className="esim-card p-9 text-center">
     <h3 className="text-xl font-semibold">Inga paket i detta urval</h3>
