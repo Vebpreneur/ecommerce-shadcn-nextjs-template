@@ -4,7 +4,8 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowUpRight, Clock3 } from "lucide-react"
 import { ARTICLES, getArticle } from "@/lib/esim-articles"
 import { ArticleCard } from "@/components/esim/article-card"
-import { ArticleProviderWidget, ArticleSidebar, ArticleSourceLinks } from "@/components/esim/article-widgets"
+import { ArticleProviderWidget, ArticleSidebar, ArticleSourceLinks, EditorialAd } from "@/components/esim/article-widgets"
+import { articlePlacement } from "@/lib/esim-monetization"
 
 const siteUrl=process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/,"") || "https://esimval.se"
 type Props={params:Promise<{slug:string}>}
@@ -28,6 +29,7 @@ export default async function ArticlePage({params}:Props){
  const article=getArticle(slug)
  if(!article)notFound()
  const related=ARTICLES.filter(a=>a.slug!==slug).slice(0,3)
+ const adPlacements=articlePlacement(article.slug)
  const jsonLd={
   "@context":"https://schema.org",
   "@type":"Article",
@@ -59,7 +61,7 @@ export default async function ArticlePage({params}:Props){
    </div>
    <div className="esim-section">
      <div className="esim-container grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_310px]">
-       <article className="min-w-0">
+       <article className={`min-w-0 ${article.sidebarSide==="left"?"lg:order-2":"lg:order-1"}`}>
          <div className="space-y-14">
            {article.sections.map((section,i)=><section key={i} id={`avsnitt-${i+1}`} className="scroll-mt-28">
              <h2 className="text-3xl font-semibold tracking-tight">{section.heading}</h2>
@@ -79,6 +81,7 @@ export default async function ArticlePage({params}:Props){
          </div>
          <div className="mt-16 space-y-8">
            <ArticleProviderWidget providerSlugs={article.providers||["airalo","yesim","saily"]} destinationSlug={article.destinationSlug}/>
+           <EditorialAd creative={adPlacements.inline} placement="inline"/>
            <ArticleSourceLinks sources={article.sources}/>
            <div className="esim-editorial p-7 sm:p-9">
              <h2 className="text-2xl font-semibold">Nästa steg inför din resa</h2>
