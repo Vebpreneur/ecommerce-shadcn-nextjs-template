@@ -14,6 +14,7 @@ export type Article = {
   readingMinutes: number
   providers?: string[]
   destinationSlug?: string
+  sidebarSide?: "left" | "right"
   sources?: { label: string; url: string }[]
   sections: ArticleSection[]
 }
