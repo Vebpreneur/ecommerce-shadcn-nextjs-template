@@ -33,6 +33,7 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
  const [currency,setCurrency]=useState("all")
  const [sort,setSort]=useState<"price"|"data"|"validity">("price")
  const [refresh,setRefresh]=useState(0)
+ const [visibleCount,setVisibleCount]=useState(12)
 
  useEffect(()=>{
   const controller=new AbortController()
@@ -52,6 +53,7 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
  },[country,source,refresh])
  const providers=useMemo(()=>Array.from(new Set((data?.items||[]).map(p=>p.provider))).sort((a,b)=>a.localeCompare(b,"sv")),[data])
  const currencies=useMemo(()=>Array.from(new Set((data?.items||[]).map(p=>p.currency))).sort(),[data])
+ useEffect(()=>{setVisibleCount(12)},[country,source,minGb,minDays,provider,currency,sort])
  const plans=useMemo(()=>{
   const filtered=(data?.items||[]).filter(p=>
     (p.unlimited||minGb===0||(p.dataGb!==null&&p.dataGb>=minGb))&&
@@ -133,8 +135,12 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
    </div>}
    {loading&&<p className="esim-text-muted py-8 text-center text-sm" role="status">Hämtar paket från datakällorna…</p>}
    <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
-     {!loading&&plans.map(plan=><PlanCard key={plan.id} plan={plan} destination={data?.destination||country}/>)}
+     {!loading&&plans.slice(0,visibleCount).map(plan=><PlanCard key={plan.id} plan={plan} destination={data?.destination||country}/>)}
    </div>
+   {!loading&&plans.length>visibleCount&&<div className="flex flex-col items-center gap-3 pt-4">
+     <p className="esim-text-muted text-xs">Visar {Math.min(visibleCount,plans.length)} av {plans.length} paket</p>
+     <button type="button" className="esim-button esim-button-secondary" onClick={()=>setVisibleCount(c=>c+12)}>Visa 12 fler erbjudanden</button>
+   </div>}
    <div className="esim-editorial p-5 text-xs leading-6">
     <strong>Källor och prisinformation:</strong> Data från <a className="underline" target="_blank" rel="noopener noreferrer" href="https://esimadvice.com/developers">eSIM Advice</a> och <a className="underline" target="_blank" rel="noopener noreferrer" href="https://esimdata.app/agents/">esimdata.app</a>.
     Priser och täckning kan ändras. Produktlänkar kan vara datakällornas egna spårade länkar och ger inte automatiskt provision till eSIMval. Vissa priser kan vara kupongjusterade och samma paket kan förekomma från båda källorna. Kontrollera alltid slutpris och villkor hos leverantören.
