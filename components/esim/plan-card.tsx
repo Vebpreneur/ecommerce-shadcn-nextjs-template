@@ -99,3 +99,22 @@ export function PlanCard({plan,destination}:Props){
    </div>
  </article>
 }
+
+/** Stable loading layout prevents the package grid from jumping while filters refresh. */
+export function PlanCardSkeleton(){
+ return <div className="esim-offer-card animate-pulse" aria-hidden="true">
+   <div className="esim-offer-card-head">
+     <div className="flex items-center gap-3"><div className="size-11 rounded-xl bg-[#e9edeb]"/><div className="space-y-2"><div className="h-3 w-24 rounded bg-[#e9edeb]"/><div className="h-2.5 w-16 rounded bg-[#eef0ee]"/></div></div>
+     <div className="h-6 w-20 rounded-full bg-[#eef0ee]"/>
+   </div>
+   <div className="esim-offer-card-content">
+     <div className="h-5 w-4/5 rounded bg-[#e9edeb]"/><div className="mt-3 h-3 w-2/3 rounded bg-[#eef0ee]"/>
+     <div className="esim-offer-metrics mt-7">
+       {[0,1].map(n=><div key={n} className="esim-offer-metric"><div className="h-3 w-14 rounded bg-[#eef0ee]"/><div className="mt-4 h-6 w-20 rounded bg-[#e9edeb]"/></div>)}
+     </div>
+     <div className="mt-7 h-3 w-32 rounded bg-[#eef0ee]"/><div className="mt-3 h-8 w-28 rounded bg-[#e9edeb]"/>
+     <div className="mt-7 h-4 w-40 rounded bg-[#eef0ee]"/>
+   </div>
+   <div className="esim-offer-card-foot"><div className="h-12 rounded-xl bg-[#e9edeb]"/></div>
+ </div>
+}
