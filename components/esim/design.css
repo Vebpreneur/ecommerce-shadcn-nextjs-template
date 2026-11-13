@@ -51,8 +51,8 @@
 }
 .esim-card:hover { transform: translateY(-3px); box-shadow: var(--ev-shadow-hover); border-color: #d3d9d6 !important; }
 .esim-card-image { aspect-ratio: 4/3; width:100%; display:block; overflow:hidden; background:var(--ev-soft); }
-.esim-card-image img { width:100%;height:100%;object-fit:cover;transition:transform .5s ease; }
-.esim-card:hover .esim-card-image img { transform:scale(1.035); }
+.esim-card-image > img { width:100%;height:100%;object-fit:cover;transition:transform .5s ease; }
+.esim-card:hover .esim-card-image > img { transform:scale(1.035); }
 .esim-card-body { padding: 20px 22px 22px; display:flex;flex-direction:column;flex:1; }
 .esim-card-title { font-size:1.2rem;font-weight:650;letter-spacing:-.025em;line-height:1.32;color:var(--ev-ink); }
 .esim-card-copy {font-size:.88rem;line-height:1.65;color:var(--ev-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
