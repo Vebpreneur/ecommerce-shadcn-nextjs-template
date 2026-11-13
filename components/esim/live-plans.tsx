@@ -95,7 +95,12 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
        <option value="0">Alla</option><option value="7">7 dagar+</option><option value="15">15 dagar+</option><option value="30">30 dagar+</option>
       </select></label>
     </div>
-    <div className="mt-4 grid gap-4 border-t border-[#e5e8e5] pt-4 sm:grid-cols-2">
+    <details className="mt-4 border-t border-[#e5e8e5] pt-4">
+      <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-semibold">
+        <SlidersHorizontal className="size-4"/> Fler filter
+        {(provider!=="all"||currency!=="all")&&<span className="ml-1 rounded-full bg-[#1a1d1f] px-2 py-0.5 text-[10px] text-white">Aktiva</span>}
+      </summary>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
       <label className="block"><span className="mb-2 block text-xs font-semibold">Leverantör</span>
         <select value={provider} onChange={e=>setProvider(e.target.value)} className="esim-field h-12 w-full px-3 text-sm">
           <option value="all">Alla leverantörer</option>
@@ -108,7 +113,8 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
           {currencies.map(value=><option key={value} value={value}>{value}</option>)}
         </select>
       </label>
-    </div>
+      </div>
+    </details>
     <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-[#e5e8e5] pt-5">
      <div className="flex items-center gap-2 text-sm">
       <Database className="size-4 text-[#6c7772]"/>
