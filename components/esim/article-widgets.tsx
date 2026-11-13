@@ -53,7 +53,7 @@ export function EditorialAd({ creative, placement="sidebar" }:{ creative?:AdCrea
 export function ArticleSidebar({article}:{article:Article}) {
   const providers=article.providers?.length ? article.providers : ["airalo","yesim","saily"]
   const placements=articlePlacement(article.slug)
-  return <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+  return <aside className={`space-y-5 lg:sticky lg:top-28 lg:self-start ${article.sidebarSide==="left"?"lg:order-1":"lg:order-2"}`}>
     <div className="esim-card p-6">
       <p className="esim-eyebrow">I DEN HÄR GUIDEN</p>
       <nav aria-label="Artikelinnehåll" className="mt-5 space-y-3">
