@@ -2,11 +2,31 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, Search, SlidersHorizontal } from "lucide-react"
-import { DESTINATIONS, PROVIDERS } from "@/lib/esim"
-import { DestinationCard } from "@/components/esim/collection"
+import { ArrowRight, ArrowUpRight, Search } from "lucide-react"
+import { DESTINATIONS, type Destination } from "@/lib/esim"
+import { getLiveDestination } from "@/lib/esim-live/destinations"
 import { ProviderMarquee } from "@/components/esim/provider-marquee"
 import { LivePlansExplorer } from "@/components/esim/live-plans"
+
+function ShopDestinationCard({destination}:{destination:Destination}){
+ const country=getLiveDestination(destination.slug)
+ const href=country?`/shop?country=${country.iso}#esim-live-packages`:"/providers"
+ return <Link href={href} className="esim-card group flex h-full flex-col">
+   <div className="esim-card-image relative">
+     <img src={destination.image} alt={destination.name} loading="lazy" className="size-full object-cover"/>
+     <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-[#1a1d1f]">{destination.kind}</span>
+   </div>
+   <div className="esim-card-body">
+     <p className="esim-eyebrow">UTFORSKA DESTINATION</p>
+     <h3 className="esim-card-title mt-2">{destination.name}</h3>
+     <p className="esim-card-copy mb-6 mt-3 min-h-[44px]">{country?"Sök och jämför paket från flera leverantörer.":"Utforska leverantörer med regionala och globala alternativ."}</p>
+     <div className="esim-card-link">
+       {country?"Visa eSIM-paket":"Utforska leverantörer"}
+       <span className="esim-card-link-icon"><ArrowUpRight className="size-4"/></span>
+     </div>
+   </div>
+ </Link>
+}
 
 export default function ShopHub() {
   const [query,setQuery] = useState("")
@@ -37,12 +57,12 @@ export default function ShopHub() {
       </div>
     </section>
     <ProviderMarquee/>
-    <LivePlansExplorer initialCountry="TR" />
+    <div id="esim-live-packages" className="scroll-mt-24"><LivePlansExplorer initialCountry="TR" /></div>
     <section className="esim-section">
       <div className="esim-container">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div><p className="esim-eyebrow">DESTINATIONER</p><h2 className="mt-3 text-3xl font-semibold">Utforska tillgängliga kategorier</h2>
-            <p className="esim-text-muted mt-3 max-w-xl text-sm leading-7">Utforska våra redaktionellt utvalda destinationer. Använd den nya paketsökningen ovan för att jämföra aktuella erbjudanden från flera datakällor.</p>
+            <p className="esim-text-muted mt-3 max-w-xl text-sm leading-7">Välj ett land för att se paket från flera datakällor. Regioner och globala alternativ leder till leverantörsöversikten.</p>
           </div>
           <Link href="/jamfor" className="esim-button esim-button-secondary">Jämför erbjudanden <ArrowUpRight className="size-4"/></Link>
         </div>
@@ -52,7 +72,7 @@ export default function ShopHub() {
             <input type="search" className="w-full bg-transparent text-sm outline-none" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Sök destination..."/></label>
         </div>
         {destinations.length ? <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {destinations.map(d=><DestinationCard key={d.slug} destination={d} provider={PROVIDERS[0]}/>)}
+          {destinations.map(d=><ShopDestinationCard key={d.slug} destination={d}/>)}
         </div> : <p className="esim-text-muted py-14 text-center">Inga destinationer matchar din sökning.</p>}
       </div>
     </section>
