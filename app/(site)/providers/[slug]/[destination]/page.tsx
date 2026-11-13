@@ -32,17 +32,17 @@ export default async function DestinationPage({ params }: Props) {
   if (!provider || !place) notFound()
 
   return (
-    <main className="bg-[#f8f7f4] text-[#181818]">
-      <div className="border-b border-[#252629] bg-[#111214] px-4 pb-14 pt-24 text-white">
-        <nav aria-label="Brödsmulor" className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 text-xs text-white/60 sm:px-6 lg:px-16">
-          <Link href="/providers" className="hover:text-white">Leverantörer</Link><span>/</span>
-          <Link href={`/providers/${provider.slug}`} className="hover:text-white">{provider.name}</Link><span>/</span>
-          <span className="text-white">{place.name}</span>
+    <main className="esim-page">
+      <div className="esim-hero px-4 pb-10 pt-28">
+        <nav aria-label="Brödsmulor" className="esim-text-muted mx-auto flex max-w-7xl flex-wrap items-center gap-2 text-xs sm:px-6 lg:px-16">
+          <Link href="/providers" className="hover:text-[#1a1d1f]">Leverantörer</Link><span>/</span>
+          <Link href={`/providers/${provider.slug}`} className="hover:text-[#1a1d1f]">{provider.name}</Link><span>/</span>
+          <span className="text-[#1a1d1f]">{place.name}</span>
         </nav>
       </div>
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-16">
+      <div className="esim-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative overflow-hidden rounded-[24px] border border-[#e7e5e0] bg-white">
+          <div className="esim-card relative overflow-hidden">
             <img src={place.image} alt={place.name} className="aspect-[4/3] w-full object-cover"/>
             <div className="flex items-center gap-3 p-5">
               <ProviderLogo provider={provider} size="inline" />
@@ -51,16 +51,16 @@ export default async function DestinationPage({ params }: Props) {
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">{provider.name} / eSIM</p>
+            <p className="esim-eyebrow">{provider.name} / eSIM</p>
             <h1 className="mt-4 text-5xl font-semibold tracking-[-.055em] sm:text-6xl">eSIM för {place.name}</h1>
-            <p className="mt-6 max-w-lg text-base leading-8 text-[#6e6e6e]">Utforska din nästa destination och välj vad du behöver. Kontrollera sedan datapaket, giltighetstid och aktuella villkor hos {provider.name}.</p>
+            <p className="esim-text-muted mt-6 max-w-lg text-base leading-8">Utforska din nästa destination och välj vad du behöver. Kontrollera sedan datapaket, giltighetstid och aktuella villkor hos {provider.name}.</p>
             <div className="mt-9"><EsimPlanFinder provider={provider} destinationSlug={place.slug}/></div>
           </div>
         </div>
-        <div className="mt-20 grid gap-10 border-t border-[#e5e3dd] pt-14 lg:grid-cols-[.7fr_1.3fr]">
-          <div><p className="text-xs font-semibold uppercase tracking-[.18em] text-[#777]">INNAN DU BESTÄLLER</p>
+        <div className="mt-20 grid gap-10 border-t border-[#e5e8e5] pt-14 lg:grid-cols-[.7fr_1.3fr]">
+          <div><p className="esim-eyebrow">INNAN DU BESTÄLLER</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight">Det här behöver du veta.</h2>
-            <p className="mt-4 leading-8 text-[#777]">Kontrollera alltid det exakta paketets information innan betalning.</p></div>
+            <p className="esim-text-muted mt-4 leading-8">Kontrollera alltid det exakta paketets information innan betalning.</p></div>
           <div className="space-y-2">
             {[
               ["Vilken datapott ingår?","Datamängder och eventuella hastighetsbegränsningar varierar mellan paket."],
@@ -68,13 +68,13 @@ export default async function DestinationPage({ params }: Props) {
               ["Vilka länder ingår?","Granska täckningslistan och eventuella nätverks- och roamingvillkor."],
               ["Är telefonen kompatibel?","Kontrollera att den exakta telefonmodellen stöder eSIM och uppfyller leverantörens krav."],
               ["Hur installerar jag mitt eSIM?","Läs installationsinstruktionerna hos leverantören och vår guide innan du börjar."],
-            ].map(([question,answer])=><details key={question} className="group rounded-xl border border-[#e7e5e0] bg-white px-6 py-5">
+            ].map(([question,answer])=><details key={question} className="esim-accordion group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold marker:hidden">{question}<span className="text-lg text-[#777] group-open:rotate-45">+</span></summary>
-              <p className="mt-3 text-sm leading-7 text-[#777]">{answer}</p>
+              <p className="esim-text-muted mt-3 text-sm leading-7">{answer}</p>
             </details>)}
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap gap-6 border-t border-[#e5e3dd] pt-7">
+        <div className="mt-12 flex flex-wrap gap-6 border-t border-[#e5e8e5] pt-7">
           <Link href={`/providers/${provider.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold hover:underline"><ArrowLeft className="size-4"/> Fler destinationer hos {provider.name}</Link>
           <Link href="/about" className="inline-flex items-center gap-2 text-sm font-semibold hover:underline">eSIM-installationsguide <ArrowUpRight className="size-4"/></Link>
         </div>
