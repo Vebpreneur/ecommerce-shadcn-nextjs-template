@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Globe2 } from "lucide-react"
 import { EsimRippleHero } from "@/components/esim/ripple-hero"
 import { LargeHeroSearch } from "@/components/esim/printify-controls"
 import { ProviderMarquee } from "@/components/esim/provider-marquee"
@@ -11,6 +11,7 @@ import { PhoneCheck } from "@/components/esim/phone-check"
 import { HomeCategories, HomeEditorial, HomeCompare, HomeKnowledge, HomeFAQ } from "@/components/esim/home-sections"
 import { StoreCard, DestinationCard } from "@/components/esim/collection"
 import { PROVIDERS, DESTINATIONS } from "@/lib/esim"
+import { LIVE_DESTINATIONS } from "@/lib/esim-live/destinations"
 
 export default function EsimHome() {
   const [query, setQuery] = useState("")
@@ -22,6 +23,10 @@ export default function EsimHome() {
   )
   const destinations = useMemo(() =>
     DESTINATIONS.filter(item => item.name.toLocaleLowerCase("sv").includes(q) || item.kind.toLocaleLowerCase("sv").includes(q)),
+    [q]
+  )
+  const liveCountryMatches=useMemo(()=>
+    q ? LIVE_DESTINATIONS.filter(item=>item.name.toLocaleLowerCase("sv").includes(q)||item.region?.toLocaleLowerCase("sv").includes(q)||item.iso.toLocaleLowerCase("sv")===q).slice(0,16) : [],
     [q]
   )
   const airalo = PROVIDERS[0]
@@ -69,6 +74,23 @@ export default function EsimHome() {
             {(q ? providers : providers.slice(0,4)).map(provider => <StoreCard key={provider.slug} provider={provider} />)}
           </div>
         )}
+        {q && liveCountryMatches.length>0 && (
+          <div className="mt-10">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <h3 className="text-2xl font-semibold tracking-tight">Länder med paketsökning</h3>
+              <span className="esim-text-muted text-xs">Sök paket från våra jämförelsedatakällor</span>
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {liveCountryMatches.map(country=><Link key={country.iso}
+                href={`/shop?country=${country.iso}#esim-live-packages`}
+                className="group flex items-center gap-3 rounded-2xl border border-[#e5e8e5] bg-white p-4 transition-colors hover:border-[#bfcac1] hover:bg-[#f5f7f4]">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#f0f3ef]"><Globe2 className="size-5"/></span>
+                <span className="min-w-0 flex-1"><strong className="block truncate text-sm">{country.name}</strong><span className="esim-text-muted text-xs">{country.region||"Destination"}</span></span>
+                <ArrowUpRight className="size-4 shrink-0"/>
+              </Link>)}
+            </div>
+          </div>
+        )}
         {q && destinations.length > 0 && (
           <div className="mt-12">
             <h3 className="text-2xl font-semibold tracking-tight">Matchande destinationer</h3>
@@ -78,7 +100,7 @@ export default function EsimHome() {
             </div>
           </div>
         )}
-        {providers.length === 0 && (!q || destinations.length === 0) && (
+        {providers.length === 0 && destinations.length===0 && liveCountryMatches.length===0 && (
           <p className="mt-9 rounded-2xl border border-[#e5e3de] bg-white px-6 py-12 text-center text-[#757575]">Inga träffar. Prova ett annat land, en region eller en leverantör.</p>
         )}
       </section>
