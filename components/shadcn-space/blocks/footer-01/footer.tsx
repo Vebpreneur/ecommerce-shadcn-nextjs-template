@@ -98,6 +98,8 @@ type FooterData = {
 
 const footerSections: FooterData[] = [
   { title: "Utforska", links: [
+    { title: "eSIM-utbud", href: "/shop" },
+    { title: "Jämför leverantörer", href: "/jamfor" },
     { title: "Alla leverantörer", href: "/providers" },
     { title: "Airalo", href: "/providers/airalo" },
     { title: "eSIM-guide", href: "/about" },
