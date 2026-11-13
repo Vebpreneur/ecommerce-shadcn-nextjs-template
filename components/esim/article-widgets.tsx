@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowRight, CircleHelp, Globe2, ShieldCheck } from "lucid
 import { PROVIDERS } from "@/lib/esim"
 import { ProviderLogo } from "@/components/esim/provider-logo"
 import type { Article } from "@/lib/esim-articles"
+import { articlePlacement } from "@/lib/esim-monetization"
 
 /**
  * Reusable editorial offer module. These are navigation links, not specific
@@ -51,6 +52,7 @@ export function EditorialAd({ creative, placement="sidebar" }:{ creative?:AdCrea
 
 export function ArticleSidebar({article}:{article:Article}) {
   const providers=article.providers?.length ? article.providers : ["airalo","yesim","saily"]
+  const placements=articlePlacement(article.slug)
   return <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
     <div className="esim-card p-6">
       <p className="esim-eyebrow">I DEN HÄR GUIDEN</p>
@@ -59,6 +61,7 @@ export function ArticleSidebar({article}:{article:Article}) {
       </nav>
     </div>
     <ArticleProviderWidget providerSlugs={providers} destinationSlug={article.destinationSlug} compact/>
+    <EditorialAd creative={placements.sidebar} placement="sidebar"/>
     <div className="esim-editorial p-6">
       <Globe2 className="size-6"/>
       <h3 className="mt-5 text-lg font-semibold">Ska du resa snart?</h3>
