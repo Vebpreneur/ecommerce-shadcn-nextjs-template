@@ -33,6 +33,7 @@ export const PROVIDERS: Provider[] = [
   { slug: "roamic", name: "Roamic", website: "roamic.com", affiliateUrl: "https://clk.roamic.com/5kNje3", cover: photo("photo-1500534623283-312aade485b7"), description: "Utforska Roamic som alternativ inför din nästa resa.", tagline: "Res med Roamic." },
   { slug: "bytesim", name: "ByteSIM", website: "bytesim.com", affiliateUrl: "https://bytesimlimited.pxf.io/L0NDvL", cover: photo("photo-1527631746610-bca00a040d60"), description: "Upptäck ByteSIM och deras eSIM-utbud.", tagline: "Utforska ByteSIM." },
   { slug: "voye-global", name: "Voye Global", website: "voyeglobal.com", affiliateUrl: "https://voyeglobalconnectivity.pxf.io/k4qRnn", cover: photo("photo-1501785888041-af3ef285b470"), description: "Hitta vidare till Voye Globals reseuppkoppling.", tagline: "Res längre med Voye Global." },
+  { slug: "simzy", name: "Simzy", website: "simzy.com", affiliateUrl: "https://simzy.sjv.io/MKLqeJ", cover: photo("photo-1436491865332-7a61a109cc05"), description: "Utforska Simzys eSIM-utbud och se vilka resepaket som passar din destination.", tagline: "Uppkopplad på resan med Simzy." },
   { slug: "quibity", name: "Quibity", website: "quibity.com", affiliateUrl: "https://quib.to/d_FIRWQZQS", cover: photo("photo-1470770841072-f978cf4d019e"), description: "Upptäck Quibity och deras eSIM-alternativ.", tagline: "Världen med Quibity." },
 ]
 
