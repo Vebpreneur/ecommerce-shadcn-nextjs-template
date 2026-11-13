@@ -30,8 +30,15 @@ const num=(v:unknown)=>typeof v==="number"&&Number.isFinite(v)?v:typeof v==="str
 const bool=(v:unknown):boolean|null=>typeof v==="boolean"?v:null
 const field=(obj:Record<string,unknown>,names:string[])=>names.map(k=>obj[k]).find(v=>v!==undefined&&v!==null)
 const safeUrl=(link:string,domain:string)=>{
- try {const u=new URL(link,domain);return u.protocol==="https:"&&u.hostname===new URL(domain).hostname?u.toString():null}
- catch{return null}
+ try {
+  const u=new URL(link,domain)
+  // Official feeds may link to the source's /go route OR directly to an HTTPS merchant.
+  // Never render javascript:, local-file schemes, embedded credentials or loopback hosts.
+  if(u.protocol!=="https:"||u.username||u.password)return null
+  const host=u.hostname.toLowerCase()
+  if(host==="localhost"||host.endsWith(".local")||host==="127.0.0.1"||host==="::1")return null
+  return u.toString()
+ }catch{return null}
 }
 function listFromBody(body:unknown):unknown[]{
  if(Array.isArray(body))return body
