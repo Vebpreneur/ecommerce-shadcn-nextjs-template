@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import "./ripple-hero.css"
 
 /**
- * eSIMval's dark adaptation of Commercify's PrintifyRippleHero.
+ * eSIMval's light adaptation of Commercify's PrintifyRippleHero.
  * Interactive squares, staggered ripple on click, no photos or extra libraries.
  */
 const ROWS = 8
@@ -42,7 +42,7 @@ export function EsimRippleHero() {
               onClick={() => setOrigin({ row, col })}
               style={{
                 backgroundColor: distance < 6
-                  ? `rgba(210, 222, 234, ${Math.max(0.035, 0.21 - distance * 0.028)})`
+                  ? `rgba(74, 111, 104, ${Math.max(0.025, 0.13 - distance * 0.018)})`
                   : undefined,
                 transitionDelay: origin ? `${Math.round(distance * 42)}ms` : "0ms",
               }}
@@ -50,7 +50,7 @@ export function EsimRippleHero() {
           )
         })}
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,transparent_5%,#090a0c88_85%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,transparent_10%,#eef1ee66_98%)]" />
     </div>
   )
 }
