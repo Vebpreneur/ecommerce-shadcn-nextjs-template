@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
-import { PROVIDERS, DESTINATIONS } from "@/lib/esim"
+import { PROVIDERS } from "@/lib/esim"
+import { VERIFIED_ESIM_PLANS } from "@/lib/esim-plans"
 import { ARTICLES } from "@/lib/esim-articles"
 
 const base=(process.env.NEXT_PUBLIC_SITE_URL||"https://esimval.se").replace(/\/$/,"")
@@ -17,7 +18,7 @@ export default function sitemap():MetadataRoute.Sitemap {
  return [
   ...staticRoutes.map(r=>({url:`${base}${r.path}`,changeFrequency:r.frequency as MetadataRoute.Sitemap[number]["changeFrequency"],priority:r.priority})),
   ...PROVIDERS.map(p=>({url:`${base}/providers/${p.slug}`,changeFrequency:"weekly" as const,priority:.8})),
-  ...PROVIDERS.flatMap(p=>DESTINATIONS.map(d=>({url:`${base}/providers/${p.slug}/${d.slug}`,changeFrequency:"monthly" as const,priority:.45}))),
+  ...Array.from(new Set(VERIFIED_ESIM_PLANS.map(p=>`${base}/providers/${p.providerSlug}/${p.destinationSlug}`))).map(url=>({url,changeFrequency:"weekly" as const,priority:.7})),
   ...ARTICLES.map(a=>({url:`${base}/artiklar/${a.slug}`,changeFrequency:"monthly" as const,priority:.7})),
  ]
 }
