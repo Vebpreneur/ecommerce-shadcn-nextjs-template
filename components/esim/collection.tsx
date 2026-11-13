@@ -13,17 +13,6 @@ import { ProviderMarquee } from "@/components/esim/provider-marquee"
 
 type CollectionProps = { provider?: Provider }
 
-function MovingArrow({ label, inverse = false }: { label: string; inverse?: boolean }) {
-  return (
-    <span className={`group relative inline-flex h-10 items-center overflow-hidden rounded-full py-1 ps-4 pe-12 text-sm font-medium transition-all duration-500 hover:ps-12 hover:pe-4 ${inverse ? "bg-white text-[#181818]" : "bg-[#171717] text-white"}`}>
-      <span className="relative z-10">{label}</span>
-      <span className={`absolute right-1 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45 ${inverse ? "bg-[#181818] text-white" : "bg-white text-[#171717]"}`}>
-        <ArrowUpRight size={16} />
-      </span>
-    </span>
-  )
-}
-
 function CollectionHero({ provider, query, onQueryChange, onBrowse }: CollectionProps & { query: string; onQueryChange: (value: string) => void; onBrowse: () => void }) {
   return (
     <>
@@ -107,8 +96,8 @@ export function DestinationCard({ provider, destination }: { provider: Provider;
 function CollectionEditorial({ provider }: CollectionProps) {
   const title = provider ? "Välj eSIM inför resan." : "En plats för dina eSIM-val."
   const description = provider
-    ? `Hitta en destination hos ${provider.name}. Vi visar vägen till leverantören där du kan jämföra aktuella erbjudanden, priser och villkor.`
-    : "Utforska leverantörer på ett och samma ställe. Öppna en storefront, välj destination och fortsätt till leverantörens egna erbjudanden."
+    ? `Upptäck destinationer och jämför paket från olika datakällor innan du går vidare till leverantören.`
+    : "Utforska leverantörer på ett och samma ställe och jämför deras erbjudanden med samma tydliga kriterier."
   return (
     <section className="esim-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-16">
       <div className="esim-editorial grid lg:grid-cols-2">
@@ -117,8 +106,8 @@ function CollectionEditorial({ provider }: CollectionProps) {
           <h2 className="max-w-lg text-3xl font-medium tracking-tight md:text-5xl">{title}</h2>
           <p className="esim-text-muted max-w-lg text-base leading-8">{description}</p>
           <div>
-            <Link href={provider ? "/providers" : "/providers/airalo"} className="group inline-block">
-              <MovingArrow label={provider ? "Alla leverantörer" : "Upptäck Airalo"} />
+            <Link href="/jamfor" className="esim-button">
+              Jämför eSIM-alternativ <ArrowUpRight className="size-4"/>
             </Link>
           </div>
         </div>
@@ -189,8 +178,8 @@ export default function EsimCollection({ provider }: CollectionProps) {
         <p className="esim-eyebrow">UPPTÄCK MER</p>
         <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">Din nästa destination väntar.</h2>
         <p className="esim-text-muted mx-auto mt-4 max-w-xl text-sm leading-7">Vi hjälper dig att upptäcka leverantörer och alternativ – själva köpet gör du alltid hos leverantören.</p>
-        <Link href={provider ? "/providers" : "/providers/airalo"} className="group mt-7 inline-block">
-          <MovingArrow inverse label={provider ? "Alla leverantörer" : "Se Airalo"} />
+        <Link href="/shop" className="esim-button esim-button-secondary mt-7">
+          Utforska eSIM-utbudet <ArrowUpRight className="size-4"/>
         </Link>
       </section>
     </main>
