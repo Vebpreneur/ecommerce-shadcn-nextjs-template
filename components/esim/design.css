@@ -85,3 +85,11 @@
   .esim-card,.esim-card-image img,.esim-button {transition:none !important;}
   .esim-card:hover,.esim-button:hover {transform:none;}
 }
+
+/* Footer: the only large dark surface outside the original navigation. */
+.esim-footer {background:#1a1d1f !important;border-color:#343c3b !important;color:#f7f8f6 !important;}
+.esim-footer p, .esim-footer .text-muted-foreground {color:#adb8b5 !important;}
+.esim-footer [class*="text-foreground"] {color:#e3eae6 !important;}
+.esim-footer a {color:#b8c3bf !important;}
+.esim-footer a:hover {color:#fff !important;}
+.esim-footer [class*="border-border"] {border-color:#343c3b !important;}
