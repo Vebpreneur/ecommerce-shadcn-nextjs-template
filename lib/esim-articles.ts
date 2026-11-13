@@ -47,6 +47,21 @@ export const ARTICLES: Article[] = [
         "Det finns lokala, regionala och globala erbjudanden. Vilka länder som ingår, hur mycket data du får och när giltighetstiden börjar styrs av det specifika paketet.",
         "Jämför alltid villkoren direkt hos leverantören. Ett eSIM-paket kan också vara enbart för mobildata och sakna traditionella samtal eller SMS."
       ] },
+      { heading:"Så installerar du en eSIM-profil", paragraphs:[
+        "Installationen börjar vanligtvis med att du beställer ett paket från en leverantör och får instruktioner för att lägga till den digitala profilen. En leverantör kan använda QR-kod, aktiveringslänk, app eller manuell installation.",
+        "På iPhone kan eSIM läggas till via mobildatainställningarna. Android-telefoner har olika menyer beroende på tillverkare, men på Pixel beskriver Google flödet via nätverksinställningar och SIM-hantering.",
+        "Kontrollera alltid om giltigheten startar vid köp, installation, aktivering eller första anslutning. Om perioden börjar för tidigt kan en del av resans datadagar gå förlorade."
+      ] },
+      { heading:"eSIM jämfört med ett vanligt SIM-kort", paragraphs:[
+        "Ett vanligt SIM-kort sätts i telefonen som ett fysiskt kort. eSIM är i stället en digital profil som lagras i en kompatibel enhet. Skillnaden ligger alltså främst i hur abonnemanget levereras och hanteras, inte i att eSIM automatiskt ger bättre nät eller högre hastighet.",
+        "Vissa telefoner kan hantera flera profiler och använda två linjer samtidigt. Hur detta fungerar beror på enheten och operatören. Ett rese-eSIM kan därför vara smidigt för mobildata medan ditt vanliga SIM finns kvar för samtal och SMS.",
+        "För den som ofta reser kan en digital profil minska behovet av att byta fysiskt SIM. Men kompatibilitet, lokal täckning och leverantörens regler är fortfarande avgörande."
+      ], widget:"providers" },
+      { heading:"Vad kostar eSIM och hur jämför man?", paragraphs:[
+        "Priset på ett eSIM-paket beror bland annat på destination, datamängd, giltighetstid, nätverk och leverantör. Jämför därför inte bara den lägsta siffran på en produktsida.",
+        "Ett rättvist jämförelsemått kan vara pris per GB, men bara när båda paketen har jämförbar täckning och giltighet. Om ett paket är obegränsat behöver du också kontrollera hastighetsbegränsningar och fair-use-villkor.",
+        "Innan eSIMval publicerar faktiska prisjämförelser kommer varje pris att behöva kopplas till en verifierad paketkälla och tidpunkt. Under tiden kan du använda vår leverantörsjämförelse för att hitta relevanta officiella erbjudanden."
+      ], widget:"comparison" },
     ],
   },
   {
@@ -74,6 +89,21 @@ export const ARTICLES: Article[] = [
         "Välj rätt eSIM-profil för mobildata och kontrollera vilka roaminginställningar paketet kräver. Inaktivera dataroaming på ditt vanliga abonnemang om du vill undvika oväntade kostnader.",
         "Spara leverantörens supportinstruktioner och kontaktvägar så att du har dem nära till hands."
       ] },
+      { heading:"Så väljer du rätt data och antal dagar", paragraphs:[
+        "Utgå från hur du normalt använder telefonen. En resa där du använder kartor, mejl och meddelanden skiljer sig från en semester med mycket videostreaming eller arbete via internetdelning.",
+        "Kontrollera också när paketets giltighet börjar. Om du anländer sent på kvällen eller ska byta land under resan kan start- och slutvillkor spela stor roll.",
+        "Läs om eventuell påfyllning och begränsningar för hotspot. Ett stort datapaket med kort giltighet kan vara mindre användbart än ett mindre paket som räcker hela resan."
+      ] },
+      { heading:"Jämför pris och paketvillkor", paragraphs:[
+        "Jämför alltid samma destinationer, antal dagar och uppskattat databehov. Täckningslistor kan skilja sig mellan ett lokalt paket, ett regionalt paket och ett globalt erbjudande.",
+        "Se om paketet bara gäller data eller om samtal och SMS ingår. Kontrollera också om det finns en policy för rimlig användning eller hastighetsgränser efter en viss surfmängd.",
+        "Använd jämförelseverktyget för att gå vidare till leverantörerna. eSIMval visar inte obekräftade paketpriser som om de vore aktuella erbjudanden."
+      ],widget:"comparison" },
+      { heading:"Sju saker att kontrollera före avresa", paragraphs:[
+        "Börja med att säkerställa eSIM-stöd, rätt destination och kompatibilitet med din telefon. Kontrollera därefter datapott, giltighetstid, täckning och villkor för aktivering.",
+        "Spara orderinformation och installationsinstruktioner så att du kan nå dem utan mobildata. Se också till att veta hur leverantörens kundsupport kontaktas.",
+        "När du har gjort dessa kontroller är det betydligt lättare att använda telefonen direkt vid ankomst och att undvika onödiga roamingavgifter."
+      ],widget:"providers" },
     ],
   },
 {
