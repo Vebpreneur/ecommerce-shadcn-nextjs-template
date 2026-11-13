@@ -59,7 +59,25 @@ export default function AboutPage(){
 
     <section className="esim-section alt border-y border-[#e5e8e5] px-4 sm:px-6">
       <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:px-16">
-        <div className="overflow-hidden rounded-[26px]"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9?auto=format&fit=crop&w=1300&q=85" alt="Mobiltelefon i handen" className="aspect-[1.25] w-full object-cover"/></div>
+        <div className="esim-editorial relative flex min-h-[420px] items-center justify-center p-8 sm:p-12">
+          <div className="absolute inset-0 opacity-50" style={{backgroundImage:"linear-gradient(#d9e1da 1px,transparent 1px),linear-gradient(90deg,#d9e1da 1px,transparent 1px)",backgroundSize:"42px 42px"}} />
+          <div className="relative flex w-full max-w-lg flex-col items-center gap-6">
+            <div className="flex w-full items-center justify-center gap-4 sm:gap-8">
+              <div className="flex h-36 w-36 flex-col items-center justify-center rounded-[22px] border border-[#dde4de] bg-white p-5 shadow-[0_12px_35px_rgba(20,30,25,.06)]">
+                <QrCode className="size-16 text-[#1a1d1f]" strokeWidth={1.2}/>
+                <p className="mt-3 text-center text-[11px] font-semibold text-[#626a6c]">Din QR-kod</p>
+              </div>
+              <ArrowRight className="size-7 shrink-0 text-[#8b9890]" strokeWidth={1.5}/>
+              <div className="flex h-44 w-28 flex-col items-center rounded-[22px] border-[6px] border-[#262b29] bg-white p-3 shadow-[0_12px_35px_rgba(20,30,25,.08)]">
+                <div className="mb-4 h-1.5 w-9 rounded-full bg-[#313735]"/>
+                <Smartphone className="mt-2 size-9 text-[#1a1d1f]" strokeWidth={1.2}/>
+                <span className="mt-3 text-center text-[10px] font-semibold">Lägg till eSIM</span>
+                <div className="mt-3 flex size-6 items-center justify-center rounded-full bg-[#e5efe7]"><Check className="size-3 text-[#446a4d]"/></div>
+              </div>
+            </div>
+            <p className="rounded-full border border-[#dbe3db] bg-white px-5 py-2 text-center text-xs text-[#626a6c]">Illustration av installationsflödet – ingen riktig QR-kod</p>
+          </div>
+        </div>
         <div><p className="esim-eyebrow">INSTALLATION & AKTIVERING</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-.045em]">QR-kod eller manuell installation?</h2>
           <p className="esim-text-muted mt-6 leading-8">De flesta leverantörer erbjuder instruktioner för att lägga till en eSIM-profil. Ofta används en QR-kod, men vissa använder också en aktiveringskod eller en app.</p>
