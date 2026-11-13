@@ -21,7 +21,7 @@ export default async function ArticlePage({params}:Props){
     </div>
     <header className="esim-hero mx-auto max-w-none px-4 pb-16 pt-12 text-center">
       <p className="esim-eyebrow">{article.category}</p>
-      <h1 className="mt-5 text-4xl font-semibold leading-[1.12] tracking-[-.045em] sm:text-6xl">{article.title}</h1>
+      <h1 className="mx-auto mt-5 max-w-4xl text-4xl font-semibold leading-[1.12] tracking-[-.045em] sm:text-6xl">{article.title}</h1>
       <p className="esim-text-muted mx-auto mt-6 max-w-2xl text-lg leading-8">{article.description}</p>
       <p className="esim-text-muted mt-5 inline-flex items-center gap-2 text-xs"><Clock3 className="size-4"/>{article.readingMinutes} minuters läsning</p>
     </header>
