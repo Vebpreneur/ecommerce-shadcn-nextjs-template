@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { AlertCircle, Database, RefreshCw, SlidersHorizontal, Search } from "lucide-react"
-import { LIVE_DESTINATIONS } from "@/lib/esim-live/destinations"
+import { LIVE_DESTINATIONS, getLiveDestination } from "@/lib/esim-live/destinations"
 import type { LivePlan } from "@/lib/esim-live/sources"
 import { PlanCard } from "@/components/esim/plan-card"
 
@@ -19,6 +19,10 @@ export function LivePlansExplorer({initialCountry="TR",compact=false}:{
  compact?:boolean
 }){
  const [country,setCountry]=useState(initialCountry)
+ useEffect(()=>{
+  const param=new URLSearchParams(window.location.search).get("country")
+  if(param){const countryFromUrl=getLiveDestination(param);if(countryFromUrl)setCountry(countryFromUrl.iso)}
+ },[])
  const [data,setData]=useState<Payload|null>(null)
  const [loading,setLoading]=useState(false)
  const [error,setError]=useState("")
