@@ -26,7 +26,7 @@ export default function EsimCompare() {
   const availableProviders = PROVIDERS.filter(p => p.name.toLocaleLowerCase("sv").includes(search.toLocaleLowerCase("sv")))
   const verifiedPlans = useMemo(() => VERIFIED_ESIM_PLANS.filter(p =>
     !destination || p.destinationSlug === destination
-  ).sort((a,b)=>a.price-b.price), [destination])
+  ), [destination])
 
   function toggle(slug: string) {
     setSelected(old => old.includes(slug) ? old.filter(s=>s!==slug) : old.length < 4 ? [...old, slug] : old)
