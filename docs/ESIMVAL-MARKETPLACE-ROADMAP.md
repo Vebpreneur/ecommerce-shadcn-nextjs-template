@@ -6,6 +6,35 @@
 **Drift:** Ingen manuell Vercel-publicering utan uttryckligt uppdrag  
 **Grundprincip:** Utöka mallens befintliga komponenter; behåll originalet och tidigare historik.
 
+## Beslut 2026-11-13: affiliate-only och Simzy
+
+- **Ingen egen försäljning eller kassa tills vidare.** Yesims återförsäljar-API ska inte användas för beställning, betalning, provisionering eller aktivering. En read-only produktfeed kan vara aktuell endast om avtalet uttryckligen medger affiliatepublicering.
+- **Simzy** är tillagd i katalogen, med användarens affiliate-URL `https://simzy.sjv.io/MKLqeJ`, slug `simzy`, sajt `simzy.com`. Logotyp hämtas tillfälligt via favikon tills användaren tillhandahåller varumärkesfil.
+- Inte alla leverantörer måste ha fullständiga paketlistor. För varje leverantör räcker en korrekt profil och en giltig utgående affiliate-URL. Paketjämförelser ska endast visa faktiskt verifierade datapaket.
+- Varje paketkälla har **egen rätt att återpublicera** och länkpolicy. Att en MCP-server eller API tekniskt visar konkurrerande leverantörers erbjudanden innebär inte att dess data får återpubliceras obegränsat eller att deras köplänkar tjänar provision till eSIMval.
+
+### Prioriterade dataflöden och deras begränsningar
+
+| Källa | Affärsnytta | Viktig begränsning |
+|---|---|---|
+| Airalo via Travelpayouts | Officiell feed med paketpris, datamängd, giltighet, bilder m.m. för affiliatemarknadsplatser | Anslutet Travelpayouts-projekt krävs; produktlänkar i feed är **inte spårade** innan de konverterats till affiliate-URL:er |
+| eSIM Advice REST/MCP | Bred multi-provider-jämförelse, prisindex, många destinationer | Gratis för kommersiell användning enligt publicerade villkor **med tydlig attribution** till eSIM Advice; prisuppdatering veckovis; köplänkar kan vara tredjepartslänkar som inte tillhör eSIMvals affilates |
+| esimdata.app REST/MCP | Multi-provider-sökning, prisjämförelse, telefonkompatibilitet | Gratis inom fair-use; villkoren förbjuder återförsäljning av bulkdata som ens egen och kräver attribuering vid visning |
+| ConnectMeGuru | Offentlig read-only feed för deras **egna** eSIM-produkter med pris, paketdata och länk | Inte ett multi-provider-API; använd deras korrekta referral-code för provision |
+| esimoa Public API + MCP | Söka esimoas egna eSIM-paket och få köplänkar med partnerkod | Kräver esimoa-konto/API-nyckel för affiliatetracking; inte en övergripande datakälla för alla leverantörer |
+| Simzy | Officiell affiliate-URL; lämplig som katalogpost | Ingen verifierad fri partnerfeed ännu; uppge inte aktuella paketpriser utan dataåtkomst |
+
+Verifieringskällor:
+- https://support.travelpayouts.com/hc/en-us/articles/17131439719826-Data-from-Airalo
+- https://esimadvice.com/developers
+- https://esimdata.app/agents/
+- https://esimdata.app/terms/
+- https://www.connectmeguru.com/pages/api-documentation
+- https://esimoa.com/en/developers/docs
+- https://simzy.com/
+
+**Praktisk integrationsordning:** 1) Airalos officiella Travelpayouts-feed med korrekta spårade länkar, 2) en tillåten multi-provider-källa för bred jämförelse, 3) partnerfeeds där de är godkända, 4) manuella leverantörskort och affiliate-länkar för resten. Bygg adapter + cache + källmärkning + `verifiedAt` + fail-closed vid saknade priser. Visa aldrig ett annat företags affiliate-länk som om den tillhörde eSIMval.
+
 ## Vision
 
 Bygg en ledande svensk resurs för rese-eSIM: en trovärdig, snabb och omfattande katalog där besökaren kan hitta leverantörer, förstå eSIM, jämföra faktiska paket på lika villkor och gå vidare till respektive leverantör. Möjlig egen försäljning via återförsäljar-API är **en senare separat affärsgren**, inte något som ska aktiveras utan att hela köpupplevelsen och avtalen är klara.
