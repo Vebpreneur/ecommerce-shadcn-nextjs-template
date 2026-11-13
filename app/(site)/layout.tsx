@@ -1,3 +1,4 @@
+import "@/components/esim/design.css"
 import Header from "@/components/shadcn-space/blocks/hero-01/header"
 import type { NavigationSection } from "@/components/shadcn-space/blocks/hero-01/header"
 import Footer from "@/components/shadcn-space/blocks/footer-01/footer"
