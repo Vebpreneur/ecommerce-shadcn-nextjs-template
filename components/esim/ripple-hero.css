@@ -1,19 +1,15 @@
+/* Commercify-inspired ripple grid, re-toned for eSIMval's unified LIGHT identity. */
 .esim-ripple-hero {
-  background:
-    radial-gradient(ellipse 70% 120% at 50% 20%, #242a30 0%, #15191e 56%, #090b0e 100%);
+  background: radial-gradient(ellipse 80% 125% at 53% 5%, #ffffff 0%, #f7f8f6 55%, #edf0ed 100%);
 }
-.esim-ripple-hero-grid { opacity: .95; }
+.esim-ripple-hero-grid { opacity: .88; }
 .esim-ripple-cell {
-  border-right: 1px solid rgba(214, 224, 233, .115);
-  border-bottom: 1px solid rgba(214, 224, 233, .115);
+  border-right: 1px solid rgba(75,91,88,.095);
+  border-bottom: 1px solid rgba(75,91,88,.095);
   background: transparent;
   cursor: crosshair;
-  transition: background-color 380ms ease, border-color 380ms ease;
+  transition: background-color 380ms ease,border-color 380ms ease;
 }
-.esim-ripple-cell:hover {
-  background: rgba(190, 202, 214, .16) !important;
-}
-.esim-ripple-cell:focus-visible { outline: none; }
-@media (prefers-reduced-motion: reduce) {
-  .esim-ripple-cell { transition: none !important; }
-}
+.esim-ripple-cell:hover { background:rgba(54,89,85,.09) !important; }
+.esim-ripple-cell:focus-visible {outline:none;}
+@media(prefers-reduced-motion:reduce) { .esim-ripple-cell {transition:none !important;} }
