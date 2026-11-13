@@ -75,7 +75,7 @@ export const ARTICLES: Article[] = [
         "Spara leverantörens supportinstruktioner och kontaktvägar så att du har dem nära till hands."
       ] },
     ],
-  },,
+  },
 {
   "slug": "esim-turkiet-guide",
   "category": "Destinationer",
