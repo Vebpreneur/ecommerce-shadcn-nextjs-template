@@ -1,11 +1,11 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight, Check, Plus, X } from "lucide-react"
-import { PROVIDERS, DESTINATIONS, type Provider } from "@/lib/esim"
-import { VERIFIED_ESIM_PLANS } from "@/lib/esim-plans"
+import { PROVIDERS, type Provider } from "@/lib/esim"
 import { ProviderLogo } from "@/components/esim/provider-logo"
+import { LivePlansExplorer } from "@/components/esim/live-plans"
 
 type Mode = "leverantorer" | "paket"
 const detailRows: { label: string; value: (p: Provider) => string }[] = [
@@ -19,14 +19,11 @@ const detailRows: { label: string; value: (p: Provider) => string }[] = [
 
 export default function EsimCompare() {
   const [selected, setSelected] = useState<string[]>(["airalo", "yesim", "saily"])
-  const [destination, setDestination] = useState("")
   const [mode, setMode] = useState<Mode>("leverantorer")
   const [search, setSearch] = useState("")
   const selectedProviders = PROVIDERS.filter(p => selected.includes(p.slug))
   const availableProviders = PROVIDERS.filter(p => p.name.toLocaleLowerCase("sv").includes(search.toLocaleLowerCase("sv")))
-  const verifiedPlans = useMemo(() => VERIFIED_ESIM_PLANS.filter(p =>
-    !destination || p.destinationSlug === destination
-  ), [destination])
+
 
   function toggle(slug: string) {
     setSelected(old => old.includes(slug) ? old.filter(s=>s!==slug) : old.length < 4 ? [...old, slug] : old)
@@ -44,7 +41,7 @@ export default function EsimCompare() {
       <div className="esim-container space-y-10">
         <div className="flex flex-wrap items-center gap-3">
           <button type="button" onClick={()=>setMode("leverantorer")} className="esim-pill" data-selected={mode==="leverantorer"}>Leverantörer</button>
-          <button type="button" onClick={()=>setMode("paket")} className="esim-pill" data-selected={mode==="paket"}>Verifierade paket</button>
+          <button type="button" onClick={()=>setMode("paket")} className="esim-pill" data-selected={mode==="paket"}>Aktuella paket</button>
           <span className="esim-text-muted ml-auto text-sm">{PROVIDERS.length} leverantörer i katalogen</span>
         </div>
 
@@ -85,26 +82,7 @@ export default function EsimCompare() {
             </table>}
           </div>
         </>:<>
-          <div className="esim-editorial p-6 sm:p-9">
-            <h2 className="text-2xl font-semibold">Jämför verifierade abonnemang</h2>
-            <p className="esim-text-muted mt-2 text-sm leading-7">Paketpriser läggs bara till när en källa är ansluten och uppgifterna är verifierade. Sorteringen är efter pris i ursprungsvalutan; blanda inte valutor för prisjämförelse.</p>
-            <label className="mt-6 block max-w-sm"><span className="mb-2 block text-sm font-semibold">Destination</span>
-              <select className="esim-field h-12 w-full px-4" value={destination} onChange={e=>setDestination(e.target.value)}>
-                <option value="">Alla destinationer</option>{DESTINATIONS.map(d=><option key={d.slug} value={d.slug}>{d.name}</option>)}
-              </select>
-            </label>
-          </div>
-          {verifiedPlans.length===0?<div className="esim-card p-10 text-center">
-            <h3 className="text-xl font-semibold">Inga verifierade paketpriser ännu</h3>
-            <p className="esim-text-muted mx-auto mt-3 max-w-lg leading-7">Vi bygger dataintegrationen innan vi publicerar jämförbara priser. Under tiden kan du välja leverantör och kontrollera paketen direkt hos dem.</p>
-            <button className="esim-button mt-6" onClick={()=>setMode("leverantorer")}>Jämför leverantörer <ArrowRight className="size-4"/></button>
-          </div>:<div className="grid gap-4 md:grid-cols-2">{verifiedPlans.map(plan=><article key={plan.id} className="esim-card p-6">
-            <p className="esim-eyebrow">{PROVIDERS.find(p=>p.slug===plan.providerSlug)?.name}</p>
-            <h3 className="mt-2 text-xl font-semibold">{plan.name}</h3>
-            <p className="esim-text-muted mt-3">{'amountGb' in plan.data ? `${plan.data.amountGb} GB`:"Obegränsad data"} · {plan.validityDays} dagar · {plan.coverageCountries.join(", ")}</p>
-            <p className="mt-5 text-2xl font-semibold">{new Intl.NumberFormat("sv-SE",{style:"currency",currency:plan.currency}).format(plan.price)}</p>
-            <a href={plan.purchaseUrl} target="_blank" rel="sponsored noopener noreferrer" className="esim-button mt-5">Se erbjudande <ArrowUpRight className="size-4"/></a>
-          </article>)}</div>}
+          <LivePlansExplorer initialCountry="TR" compact />
         </>}
       </div>
     </section>
