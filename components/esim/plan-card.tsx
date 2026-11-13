@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowUpRight, Check, ChevronDown, Clock3, Database, ExternalLink, Globe2, Info, Wifi } from "lucide-react"
+import { ArrowUpRight, ChevronDown, Clock3, Database, Globe2, Info } from "lucide-react"
 import type { LivePlan } from "@/lib/esim-live/sources"
 import { PROVIDERS } from "@/lib/esim"
 
@@ -21,7 +21,7 @@ type Props={plan:LivePlan;destination:string}
  */
 export function PlanCard({plan,destination}:Props){
  const provider=matchProvider(plan)
- const title=plan.name.trim()===plan.provider.trim()?"Rese-eSIM":plan.name
+ const title=plan.name.trim().toLocaleLowerCase("sv")===plan.provider.trim().toLocaleLowerCase("sv")?"Rese-eSIM":plan.name
  const sourceName=plan.sourceLabel||"Extern datakälla"
  return <article className="esim-offer-card group">
    <div className="esim-offer-card-head">
@@ -66,7 +66,7 @@ export function PlanCard({plan,destination}:Props){
 
      <details className="esim-offer-details">
        <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-semibold">
-         Mer om erbjudandet <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden="true"/>
+         Mer om erbjudandet <ChevronDown className="size-4 transition-transform" aria-hidden="true"/>
        </summary>
        <dl className="mt-4 grid gap-3 text-xs">
          <div className="flex justify-between gap-3"><dt className="esim-text-muted">Hotspot</dt><dd>{plan.hotspot===null?"Uppgift saknas":plan.hotspot?"Anges stödjas":"Anges inte stödjas"}</dd></div>
@@ -94,7 +94,7 @@ export function PlanCard({plan,destination}:Props){
        {provider
          ? <Link href={`/providers/${provider.slug}`} className="inline-flex items-center gap-1 hover:underline">Om {provider.name} <ArrowUpRight className="size-3"/></Link>
          : <span>Externt erbjudande</span>}
-       <span>{plan.buyUrl?"Länk via datakällan":"Leverantörslänk, ej paketspecifik"}</span>
+       <span>{plan.buyUrl?"Länk via datakällan":provider?"Inte länk till exakt paket":"Saknar produktlänk"}</span>
      </div>
    </div>
  </article>
