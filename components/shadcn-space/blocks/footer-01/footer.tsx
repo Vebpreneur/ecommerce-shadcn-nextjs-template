@@ -112,7 +112,7 @@ const footerSections: FooterData[] = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/50 bg-muted/20 py-20">
+    <footer className="esim-footer border-t py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8 xl:px-16">
         <div className="flex flex-col gap-12 sm:gap-20">
           <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-12">
