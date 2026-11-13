@@ -1,7 +1,7 @@
 import ProductOverview from "@/components/shadcn-space/blocks/product-overview-04/product-overview"
 import ProductListing from "@/components/shadcn-space/blocks/product-listing-01/index"
 import { PRODUCTS } from "@/lib/data"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import type { Metadata } from "next"
 import { Instrument_Serif } from "next/font/google"
 import { Star, ShieldCheck, Leaf, Globe, ArrowRight } from "lucide-react"
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${product.name} | eSIMval`,
     description: product.description,
+    robots: {index:false,follow:false},
   }
 }
 
@@ -112,6 +113,8 @@ const FEATURES = [
 ]
 
 export default async function ProductDetailPage({ params }: Props) {
+  // Preserve the original store for future Yesim resale, but hide its fictional demo products.
+  if (process.env.ESIMVAL_ENABLE_LEGACY_STORE !== "true") redirect("/shop")
   const { slug } = await params
   const product = PRODUCTS.find((p) => p.slug === slug)
 
