@@ -1,0 +1,83 @@
+/* eSIMval design system v1 — intentionally isolated from the original shop template.
+   All marketplace pages share these tokens, rhythms, cards and controls. */
+.esim-page {
+  --ev-canvas: #f8f8f6;
+  --ev-surface: #fff;
+  --ev-soft: #f2f3f0;
+  --ev-ink: #1a1d1f;
+  --ev-muted: #626a6c;
+  --ev-line: #e5e8e5;
+  --ev-radius: 20px;
+  --ev-shadow: 0 2px 16px rgba(17,23,27,.035);
+  --ev-shadow-hover: 0 16px 40px rgba(17,23,27,.09);
+  background: var(--ev-canvas) !important;
+  color: var(--ev-ink) !important;
+  font-family: var(--font-sans), Inter, sans-serif;
+}
+.esim-page h1, .esim-page h2, .esim-page h3 {
+  color: var(--ev-ink);
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.esim-hero {
+  position: relative;
+  background: #f5f7f5;
+  color: var(--ev-ink);
+  border-bottom: 1px solid var(--ev-line);
+}
+.esim-hero h1, .esim-hero h2 { color: var(--ev-ink) !important; }
+.esim-hero-copy { color: var(--ev-muted) !important; }
+.esim-eyebrow {
+  font-size: .72rem !important;
+  font-weight: 650;
+  letter-spacing: .12em !important;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #697173 !important;
+}
+.esim-container { width: 100%; max-width: 1200px; margin-inline:auto; padding-inline: 24px; }
+.esim-section { padding-block: 80px; background: var(--ev-canvas); color: var(--ev-ink); }
+.esim-section.alt { background: #fff; }
+.esim-section.soft { background: var(--ev-soft); }
+.esim-section h2,.esim-section h3 { color: var(--ev-ink); }
+.esim-card {
+  background: var(--ev-surface) !important;
+  border: 1px solid var(--ev-line) !important;
+  border-radius: var(--ev-radius) !important;
+  box-shadow: var(--ev-shadow);
+  overflow: hidden;
+  color: var(--ev-ink);
+  transition: transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.esim-card:hover { transform: translateY(-3px); box-shadow: var(--ev-shadow-hover); border-color: #d3d9d6 !important; }
+.esim-card-image { aspect-ratio: 4/3; width:100%; display:block; overflow:hidden; background:var(--ev-soft); }
+.esim-card-image img { width:100%;height:100%;object-fit:cover;transition:transform .5s ease; }
+.esim-card:hover .esim-card-image img { transform:scale(1.035); }
+.esim-card-body { padding: 20px 22px 22px; display:flex;flex-direction:column;flex:1; }
+.esim-card-title { font-size:1.2rem;font-weight:650;letter-spacing:-.025em;line-height:1.32;color:var(--ev-ink); }
+.esim-card-copy {font-size:.88rem;line-height:1.65;color:var(--ev-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.esim-card-link { display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:16px;border-top:1px solid var(--ev-line);font-size:.86rem;font-weight:650;color:var(--ev-ink);}
+.esim-card-link-icon {display:grid;place-items:center;width:35px;height:35px;border:1px solid var(--ev-line);border-radius:50%;background:var(--ev-surface);transition:background .2s,color .2s;}
+.esim-card:hover .esim-card-link-icon {background:var(--ev-ink);color:white;}
+.esim-text-muted { color:var(--ev-muted) !important; }
+.esim-pill {border:1px solid var(--ev-line) !important;border-radius:999px !important;background:white !important;color:var(--ev-ink) !important;min-height:36px;padding-inline:16px;}
+.esim-pill[data-selected="true"] {background:var(--ev-ink) !important;color:white !important;border-color:var(--ev-ink) !important;}
+.esim-field {border:1px solid var(--ev-line) !important;border-radius:12px !important;background:white !important;color:var(--ev-ink) !important;}
+.esim-button {display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--ev-ink);background:var(--ev-ink);color:white !important;border-radius:12px;padding:12px 20px;font-size:.88rem;font-weight:650;min-height:48px;transition:background .2s,transform .2s;}
+.esim-button:hover {background:#343b3d;transform:translateY(-1px);}
+.esim-button-secondary {background:white;border:1px solid var(--ev-line);color:var(--ev-ink) !important;}
+.esim-button-secondary:hover {background:var(--ev-soft);}
+.esim-accordion {background:white;border:1px solid var(--ev-line);border-radius:14px;padding:20px 24px;color:var(--ev-ink);}
+.esim-editorial {background:var(--ev-soft);border:1px solid var(--ev-line);border-radius:24px;overflow:hidden;color:var(--ev-ink);}
+.esim-page .esim-dark-end {background:#1a1d1f;color:#fff;}
+.esim-page .esim-dark-end h2,.esim-page .esim-dark-end h3 {color:#fff;}
+.esim-page .esim-dark-end .esim-eyebrow {color:#b6bec0 !important;}
+.esim-page .esim-dark-end .esim-text-muted {color:#bfc5c5 !important;}
+@media(min-width:768px) {
+  .esim-container { padding-inline:36px; }
+  .esim-section {padding-block:96px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .esim-card,.esim-card-image img,.esim-button {transition:none !important;}
+  .esim-card:hover,.esim-button:hover {transform:none;}
+}
