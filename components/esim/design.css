@@ -73,6 +73,10 @@
 .esim-page .esim-dark-end h2,.esim-page .esim-dark-end h3 {color:#fff;}
 .esim-page .esim-dark-end .esim-eyebrow {color:#b6bec0 !important;}
 .esim-page .esim-dark-end .esim-text-muted {color:#bfc5c5 !important;}
+.esim-page .esim-image-tile h3 {color:#fff !important;}
+.esim-page .esim-image-tile .esim-eyebrow {color:#e3e7e4 !important;}
+.esim-page a:focus-visible, .esim-page button:focus-visible {outline:2px solid #667b72;outline-offset:3px;}
+.esim-page details:not([open]) > summary {list-style:none;}
 @media(min-width:768px) {
   .esim-container { padding-inline:36px; }
   .esim-section {padding-block:96px;}
