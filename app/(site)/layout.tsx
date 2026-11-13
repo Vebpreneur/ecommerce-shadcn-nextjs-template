@@ -7,12 +7,12 @@ import { AnnouncementBar } from "@/components/announcement-bar"
 
 const navigationData: NavigationSection[] = [
   {
-    title: "Home",
+    title: "Hem",
     href: "/",
     isActive: true,
   },
   {
-    title: "Shop",
+    title: "Utbud",
     href: "/shop",
   },
   {
@@ -20,11 +20,15 @@ const navigationData: NavigationSection[] = [
     href: "/providers",
   },
   {
-    title: "About",
+    title: "Jämför",
+    href: "/jamfor",
+  },
+  {
+    title: "Guide",
     href: "/about",
   },
   {
-    title: "Contact",
+    title: "Kontakt",
     href: "/contact",
   },
 ]
