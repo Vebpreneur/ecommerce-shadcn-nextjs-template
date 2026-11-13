@@ -29,25 +29,25 @@ const CATEGORIES = [
   ]},
 ]
 export default function FAQPage(){
-  return <main className="bg-[#f8f7f4] text-[#181818]">
-    <header className="bg-[#111214] px-4 pb-24 pt-28 text-center text-white">
-      <p className="text-xs font-semibold uppercase tracking-[.2em] text-white/55">HJÄLPCENTER</p>
+  return <main className="esim-page">
+    <header className="esim-hero px-4 pb-20 pt-28 text-center">
+      <p className="esim-eyebrow">HJÄLPCENTER</p>
       <h1 className="mt-5 text-5xl font-semibold tracking-[-.05em] md:text-6xl">Vanliga frågor</h1>
-      <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-white/65">Allt du behöver veta för att komma igång med eSIM och använda eSIMval.</p>
+      <p className="esim-hero-copy mx-auto mt-5 max-w-xl text-base leading-8">Allt du behöver veta för att komma igång med eSIM och använda eSIMval.</p>
     </header>
-    <div className="mx-auto max-w-5xl px-4 py-20">
+    <div className="esim-section mx-auto max-w-5xl px-4">
       <div className="space-y-16">{CATEGORIES.map(({title,Icon,items})=><section key={title}>
         <div className="mb-6 flex items-center gap-4"><span className="flex size-12 items-center justify-center rounded-xl bg-white shadow-sm"><Icon className="size-6"/></span><h2 className="text-2xl font-semibold tracking-tight">{title}</h2></div>
-        <div className="space-y-3">{items.map(([question,answer])=><details key={question} className="group rounded-2xl border border-[#e7e5e1] bg-white px-6 py-5 shadow-sm">
+        <div className="space-y-3">{items.map(([question,answer])=><details key={question} className="esim-accordion group">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">{question}<span className="text-xl text-[#888]">+</span></summary>
-          <p className="mt-4 text-sm leading-7 text-[#777]">{answer}</p>
+          <p className="esim-text-muted mt-4 text-sm leading-7">{answer}</p>
         </details>)}</div>
       </section>)}</div>
-      <div className="mt-20 rounded-[24px] bg-[#191a1c] p-8 text-white sm:p-12">
-        <h2 className="text-3xl font-semibold">Vill du veta mer?</h2><p className="mt-4 max-w-xl text-sm leading-7 text-white/65">Läs installationsguiden eller gå vidare till vår katalog med leverantörer.</p>
+      <div className="esim-editorial mt-20 p-8 sm:p-12">
+        <h2 className="text-3xl font-semibold">Vill du veta mer?</h2><p className="esim-text-muted mt-4 max-w-xl text-sm leading-7">Läs installationsguiden eller gå vidare till vår katalog med leverantörer.</p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/about" className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#181818]">eSIM-guide <ArrowUpRight className="size-4"/></Link>
-          <Link href="/providers" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-3 text-sm font-semibold">Alla leverantörer <ArrowUpRight className="size-4"/></Link>
+          <Link href="/about" className="esim-button">eSIM-guide <ArrowUpRight className="size-4"/></Link>
+          <Link href="/providers" className="esim-button esim-button-secondary">Alla leverantörer <ArrowUpRight className="size-4"/></Link>
         </div>
       </div>
     </div>
