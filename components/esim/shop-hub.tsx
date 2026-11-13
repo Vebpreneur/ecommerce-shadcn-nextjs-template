@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, Search, SlidersHorizontal } from "lucide-reac
 import { DESTINATIONS, PROVIDERS } from "@/lib/esim"
 import { DestinationCard } from "@/components/esim/collection"
 import { ProviderMarquee } from "@/components/esim/provider-marquee"
+import { LivePlansExplorer } from "@/components/esim/live-plans"
 
 export default function ShopHub() {
   const [query,setQuery] = useState("")
@@ -20,7 +21,7 @@ export default function ShopHub() {
         <div>
           <p className="esim-eyebrow">ESIMVAL / UTBUD</p>
           <h1 className="mt-5 text-5xl font-semibold leading-tight tracking-tight md:text-6xl">Hitta eSIM för ditt resmål.</h1>
-          <p className="esim-hero-copy mt-5 max-w-xl text-base leading-8">Här samlar vi destinationer och vägen till leverantörernas erbjudanden. Jämför innan du bestämmer dig – själva köpet görs hos leverantören.</p>
+          <p className="esim-hero-copy mt-5 max-w-xl text-base leading-8">Sök bland rese-eSIM från flera leverantörer, jämför datamängd och giltighet och gå vidare till leverantören för att köpa.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/jamfor" className="esim-button">Jämför leverantörer <ArrowUpRight className="size-4"/></Link>
             <Link href="/providers" className="esim-button esim-button-secondary">Alla leverantörer <ArrowRight className="size-4"/></Link>
@@ -36,11 +37,12 @@ export default function ShopHub() {
       </div>
     </section>
     <ProviderMarquee/>
+    <LivePlansExplorer initialCountry="TR" />
     <section className="esim-section">
       <div className="esim-container">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div><p className="esim-eyebrow">DESTINATIONER</p><h2 className="mt-3 text-3xl font-semibold">Utforska tillgängliga kategorier</h2>
-            <p className="esim-text-muted mt-3 max-w-xl text-sm leading-7">Detta är vår nuvarande destinationskatalog, inte en komplett lista över aktiva produktpaket. Vi fyller på efter verifiering.</p>
+            <p className="esim-text-muted mt-3 max-w-xl text-sm leading-7">Utforska våra redaktionellt utvalda destinationer. Använd den nya paketsökningen ovan för att jämföra aktuella erbjudanden från flera datakällor.</p>
           </div>
           <Link href="/jamfor" className="esim-button esim-button-secondary">Jämför erbjudanden <ArrowUpRight className="size-4"/></Link>
         </div>
