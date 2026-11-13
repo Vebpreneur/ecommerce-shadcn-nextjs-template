@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react"
 import { DESTINATIONS, PROVIDERS, getDestination, getProvider } from "@/lib/esim"
 import { ProviderLogo } from "@/components/esim/provider-logo"
 import { EsimPlanFinder } from "@/components/esim/plan-finder"
+import { getVerifiedPlans } from "@/lib/esim-plans"
 
 type Props = { params: Promise<{ slug: string; destination: string }> }
 
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `eSIM ${place.name} hos ${provider.name} | eSIMval`,
     description: `Utforska eSIM för ${place.name}. Kontrollera aktuella paket och villkor hos ${provider.name}.`,
+    robots: getVerifiedPlans(provider.slug, place.slug).length ? {index:true,follow:true} : {index:false,follow:true},
   }
 }
 
